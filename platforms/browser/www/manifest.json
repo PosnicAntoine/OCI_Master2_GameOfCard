@@ -1,10 +1,10 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "HelloCordova",
-  "short_name": "HelloCordova",
+  "name": "GameOfCard",
+  "short_name": "GameOfCard",
   "version": "io.cordova.hellocordova",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "description": "GameOfCard is a multiplayer cross platform card game.",
   "author": "Apache Cordova Team",
   "icons": [],
   "start_url": "index.html"
