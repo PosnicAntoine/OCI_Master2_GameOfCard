@@ -136,7 +136,9 @@
 }
  ::-webkit-input-placeholder{
      color:inherit;
-     opacity:0.54 
+     opacity:0.54;
+     letter-spacing: normal;
+     text-transform: none;
 }
  ::-webkit-file-upload-button{
      -webkit-appearance:button;
@@ -179,6 +181,12 @@
 }
  .wide{
      letter-spacing:4px 
+}
+ .wider{
+     letter-spacing:8px 
+}
+ .widerer{
+     letter-spacing:16px 
 }
  hr{
      border:0;
@@ -953,6 +961,9 @@
  .xxxlarge{
      font-size:48px!important 
 }
+ .xxxxlarge{
+     font-size:64px!important 
+}
  .jumbo{
      font-size:64px!important 
 }
@@ -1054,6 +1065,24 @@
  .padding-64{
      padding-top:64px!important;
      padding-bottom:64px!important 
+}
+ .padding-toper{
+     padding-top:32px!important 
+}
+ .padding-bottom{
+     padding-bottom:16px!important 
+}
+ .padding-left{
+     padding-left:16px!important 
+}
+ .padding-lefter{
+     padding-left:32px!important 
+}
+ .padding-lefterer{
+     padding-left:64px!important 
+}
+ .padding-right{
+     padding-right:16px!important 
 }
  .left{
      float:left!important 
@@ -1204,6 +1233,10 @@
      color:#000!important;
      background-color:#ddffff!important 
 }
+ .text-uppercase{
+    text-transform:uppercase;
+ }
+
  .text-amber,.hover-text-amber:hover{
      color:#ffc107!important 
 }
