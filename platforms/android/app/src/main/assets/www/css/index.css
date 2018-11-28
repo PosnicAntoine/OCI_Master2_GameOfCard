@@ -2,6 +2,7 @@
  html{
      box-sizing:border-box; 
      max-width:800px;
+     margin:auto;
 }
  *,*:before,*:after{
      box-sizing:inherit 
@@ -172,7 +173,7 @@
      font-family:serif 
 }
  h1,h2,h3,h4,h5,h6{
-     font-family:"Segoe UI",Arial,sans-serif;
+     /*font-family:"Segoe UI",Arial,sans-serif;*/
      font-weight:400;
      margin:10px 0 
 }
@@ -936,6 +937,9 @@
 }
  .medium{
      font-size:15px!important 
+}
+ .xmedium{
+     font-size:16px!important 
 }
  .large{
      font-size:18px!important 
