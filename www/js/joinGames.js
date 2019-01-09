@@ -6,4 +6,17 @@ function init(evt){
     console.log("jeuxvalue :", jeu);
 
     $("#titleJoinGames").text(jeu);
+
+
+    switch(jeu) {
+	  case "Picolo":
+	    $('#Picolo').addClass("show");
+	    break;
+	  case "President":
+	    $('#President').addClass("show");
+	    break;
+	  default:
+	    $('#Picolo').addClass("show");
+	    $('#President').addClass("show");
+	}
 }
