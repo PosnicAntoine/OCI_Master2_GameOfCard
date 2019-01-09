@@ -1,142 +1,134 @@
-@color: #c0c0c0;
-@background: #f0f0f0;
-@gutter: 10px;
-@font-size: 16px;
-
-@card-background: #fff;
-@card-padding: 4px;
-@card-width: 172px;
-@card-height: 240px;
-@card-color-red: #e44145;
-@card-color-black: #252525;
-@card-symbol-size: 40px;
-
 body {
 	padding: 0;
 	margin: 0;
-	background: @background;
-}
-
-.cards {
+	background: #f0f0f0;
+  }
+  .cards {
 	text-align: center;
 	max-width: 640px;
 	margin: 0 auto;
-}
-
-.card {
+  }
+  .card {
 	position: relative;
 	display: inline-block;
-	width: @card-width;
-	height: @card-height;
-	font: @font-size 'Trebuchet MS';
-	
-	margin: @gutter;
-	border-radius: @card-padding;
-	background: @card-background;
+	width: 172px;
+	height: 240px;
+	font: 16px 'Trebuchet MS';
+	margin: 10px;
+	border-radius: 4px;
+	background: #fff;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
-	
-	&:before,
-	&:after {
-		content: attr(value);
-		position: absolute;
-		width: 12px;
-		text-align: center;
-		letter-spacing: -2px;
-	}
-	
-	&:before {
-		top: @card-padding;
-		left: @card-padding;
-	}
-	
-	&:after {
-		bottom: @card-padding;
-		right: @card-padding;
-		transform: rotate(180deg)
-	}
-	
-	&--heart {
-		color: @card-color-red;
-		
-		&:before,
-		&:after {
-			content: attr(value) ' ♥';
-		}
-	}
-	
-	&--spade {
-		color: @card-color-black;
-		
-		&:before,
-		&:after {
-			content: attr(value) ' ♠';
-		}
-	}
-}
+  }
+  .card:before,
+  .card:after {
+	content: attr(value);
+	position: absolute;
+	width: 12px;
+	text-align: center;
+	letter-spacing: -2px;
+  }
+  .card:before {
+	top: 4px;
+	left: 4px;
+  }
+  .card:after {
+	bottom: 4px;
+	right: 4px;
+	-webkit-transform: rotate(180deg);
+			transform: rotate(180deg);
+  }
+  .card--heart {
+	color: #e44145;
+  }
+  .card--heart:before,
+  .card--heart:after {
+	content: attr(value) ' ♥';
+  }
 
-.card__inner {
+  .card--diamond {
+	color: #e44145;
+  }
+  card--diamond:before,
+  .card--diamond:after {
+	content: attr(value) ' ♦';
+  }
+
+  .card--spade {
+	color: #252525;
+  }
+  .card--spade:before,
+  .card--spade:after {
+	content: attr(value) ' ♠';
+  }
+
+  .card--club {
+	color: #252525;
+  }
+  .card--club:before,
+  .card--club:after {
+	content: attr(value) ' ♣';
+  }
+  .card__inner {
 	box-sizing: border-box;
 	position: absolute;
 	display: flex;
 	justify-content: space-between;
-	top: 6 * @card-padding;
-	left: 6 * @card-padding;
-	right: 6 * @card-padding;
-	bottom: 6 * @card-padding;
-	
-	&--centered {
-		justify-content: center;
-	}
-}
-
-.card__column {
+	top: 24px;
+	left: 24px;
+	right: 24px;
+	bottom: 24px;
+  }
+  .card__inner--centered {
+	justify-content: center;
+  }
+  .card__column {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	
-	&--centered {
-		justify-content: center;
-	}
-}
-
-.card__symbol {
+  }
+  .card__column--centered {
+	justify-content: center;
+  }
+  .card__symbol {
 	display: inline-block;
-	height: @card-symbol-size;
+	height: 40px;
 	text-align: center;
-	
-	&:before {
-		font-size: @card-symbol-size;
-		line-height: @card-symbol-size;
-	}
-	
-	.card--heart &:before {
-		content: '♥';
-	}
-	
-	.card--spade &:before {
-		content: '♠';
-	}
-	
-	&--rotated,
-	&:last-of-type {
-		transform: rotate(180deg);
-	}
-	
-	&:first-of-type {
-		transform: rotate(0);
-	}
-	
-	&--big {
-		flex-basis: 0.25 * @card-height;
-	}
-	
-	&--huge {
-		flex-basis: 0.45 * @card-height;
-	}
-}
-
-.title {
+  }
+  .card__symbol:before {
+	font-size: 40px;
+	line-height: 40px;
+  }
+  .card--heart .card__symbol:before {
+	content: '♥';
+  }
+  .card--spade .card__symbol:before {
+	content: '♠';
+  }
+  .card--diamond .card__symbol:before {
+	content: '♦';
+  }
+  .card--club .card__symbol:before {
+	content: '♣';
+  }
+  
+  .card__symbol--rotated,
+  .card__symbol:last-of-type {
+	-webkit-transform: rotate(180deg);
+			transform: rotate(180deg);
+  }
+  .card__symbol:first-of-type {
+	-webkit-transform: rotate(0);
+			transform: rotate(0);
+  }
+  .card__symbol--big {
+	flex-basis: 60px;
+  }
+  .card__symbol--huge {
+	flex-basis: 108px;
+  }
+  .title {
 	font: 18px 'Trebuchet MS';
 	color: #444;
 	text-align: center;
-}
+  }
+  
