@@ -39,16 +39,29 @@
         <style>
             html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         </style>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="../js/joinGames.js" ></script>
         <title>GameOfCard</title>
     </head>
     <body class="darker-gray">
         <div>
-            <a href="../">
+            <a href="../index.html">
                 <i class="xxlarge margin-lefter fa fa-arrow-circle-left" aria-hidden="true"></i>
-                <h1 class="show-inline-block margin" id="titleJoinGames">#President#</h1>
+                <h1 class="show-inline-block margin" id="titleJoinGames">#Game#</h1>
             </a>
         </div>
-        <div class="margin-toper">
+
+        <!--Picolo-->
+        <div id="Picolo" class="margin-toper hide">
+          <div class="container center">
+              <a href="#" class="button teal block hover-cyan hover-text-white padding-24">
+                <b class="xmedium">Create new Game</b>
+              </a>
+          </div>
+        </div>
+
+        <!--President-->
+        <div id="President" class="margin-toper hide">
           <p class="margin-left small text-grey">Pick one:</p>
           <div class="container center">
               <a href="#" class="button teal block hover-cyan hover-text-white padding-24">
@@ -56,16 +69,14 @@
               </a>
           </div>
           <div class="margin-toper container center">
-              <div class="show-inline-block">
-                <input class="input darker-grey padding-left padding-right xxlarge widerer text-uppercase center" type="text" placeholder="Lobby code" maxlength="4"/>
-            </div>
             <div class="show-inline-block">
-            <a href="../">
-                <i class="xxxlarge center fa fa-arrow-circle-right cell-middle" aria-hidden="true"></i>
-            </a>
-           </div>
-
+               <input class="input darker-grey padding-right xxlarge wider text-uppercase center" type="text" placeholder="Lobby code" maxlength="4"/>
+                <a href="../">
+                  <i class="xxxlarge center fa fa-arrow-circle-right cell-middle" aria-hidden="true"></i>
+                </a>
+            </div>
           </div>
         </div>
+
     </body>
 </html>

@@ -137,6 +137,7 @@
  ::-webkit-input-placeholder{
      color:inherit;
      opacity:0.54;
+     
      letter-spacing: normal;
      text-transform: none;
 }
