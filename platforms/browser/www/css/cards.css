@@ -126,6 +126,35 @@ body {
   .card__symbol--huge {
 	flex-basis: 108px;
   }
+
+  .king{
+	font-size: 100px;
+	line-height: 180px;
+  }
+  .king:before{
+	content: '♔';
+  }
+  .queen{
+	font-size: 100px;
+	line-height: 180px;
+  }
+  .queen:before{
+	content: '♛';
+  }
+  .jack{
+	font-size: 100px;
+	line-height: 180px;
+  }
+  .jack:before{
+	content: '♝';
+  }
+
+  .card__symbol.ace:before{
+	font-size: 100px;
+	line-height: 180px;
+  }
+
+
   .title {
 	font: 18px 'Trebuchet MS';
 	color: #444;
