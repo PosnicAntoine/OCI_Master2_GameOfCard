@@ -6,6 +6,8 @@ function init(evt){
     console.log("jeuxvalue :", jeu);
 
     $("#titleJoinGames").text(jeu);
+<<<<<<< HEAD
+=======
 
 
     switch(jeu) {
@@ -19,4 +21,5 @@ function init(evt){
 	    $('#Picolo').addClass("show");
 	    $('#President').addClass("show");
 	}
+>>>>>>> c6c589f38bdb40ea1c999909077b4f76784bf727
 }
