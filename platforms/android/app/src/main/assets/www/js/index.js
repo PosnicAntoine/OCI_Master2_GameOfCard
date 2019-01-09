@@ -16,6 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+var PRESIDENT_LOBBY_CODE_LENGTH = 4;
+
 var app = {
     // Application Constructor
     initialize: function() {
