@@ -1,36 +1,26 @@
-<link rel="stylesheet" href="/css/cards.css" />
+<!DOCTYPE html>
 
+<html>
+	<head>
+		<link rel="stylesheet" href="/css/cards.css" />
+		<script src="/Picolo/GameManager.js"></script>
+	</head>
 <h1 class="title">Picolo</h1>
 
-<!-- Hearts -->
-<section class="cards">
-	<!-- 3 -->
-	<section class="card card--heart" value="13">
-		<div class="card__inner card__inner--centered">
-			<div class="card__column">
-				<div class="card__symbol"></div>
-				<div class="card__symbol"></div>
-				<div class="card__symbol"></div>
-				<div class="card__symbol"></div>
-			</div>
-		</div>
+<body class="darker-gray">
+	<section class="cards">
+	
+
 	</section>
 
-	<section class="card card--heart" value="K">
-		<div class="card__inner card__inner--centered">
-			<div class="card__column">
-				<div class="king"></div>
-			</div>
-		</div>
-	</section>
+	<script>
+		$(document).ready(function() {
+		$("#cards").click(function() {
+			switchCard()
+	
+		});
+		});
+	</script>
 
-	<section class="card card--heart" value="1">
-		<div class="card__inner card__inner--centered">
-			<div class="card__column">
-				<div class="card__symbol ace"></div>
-			</div>
-		</div>
-	</section>
-	
-	
-</section>
+</body>
+</html>

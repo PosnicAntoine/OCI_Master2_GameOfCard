@@ -27,8 +27,10 @@ class GameManager{
          return this.deck.shift();
      }
 
-     getCard(){
+     switchCard(){
         var current = this.deck[0];
         shift();
-     }
+        var element = document.getElementsByClassName("cards");
+        element.innerHTML = current.carteToHtml();
+     }  
 }
