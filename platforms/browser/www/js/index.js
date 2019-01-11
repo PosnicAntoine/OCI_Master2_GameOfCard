@@ -17,7 +17,6 @@
  * under the License.
  */
 
-var PRESIDENT_LOBBY_CODE_LENGTH = 4;
 
 var app = {
     // Application Constructor

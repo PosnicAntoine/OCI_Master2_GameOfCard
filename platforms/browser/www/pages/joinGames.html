@@ -1,33 +1,6 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
         <meta charset="UTF-8">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -46,20 +19,38 @@
     <body class="darker-gray">
         <div>
             <a href="../index.html">
-                <i class="xxlarge margin-lefter fa fa-arrow-circle-left" aria-hidden="true"></i>
-                <h1 class="show-inline-block margin" id="titleJoinGames">#Game#</h1>
+                <i class="xxlarge margin-left fa fa-arrow-circle-left" aria-hidden="true"></i>
+                <h1 class="show-inline-block margin" id="titleJoinGames"></h1>
             </a>
         </div>
 
-        <!--Picolo-->
-        <div id="Picolo" class="margin-toper hide">
-          <div class="container center">
-              <a href="picolo.html" class="button teal block hover-cyan hover-text-white padding-24">
-                <b class="xmedium">Create new Game</b>
-              </a>
-          </div>
-        </div>
+        <div class="padding-bottomer">
+            <!--Picolo-->
+            <div id="Picolo" class="margin-toper hide">
+              <div class="container center">
+                  <a href="picolo.html" class="button teal block hover-cyan hover-text-white padding-24">
+                    <b class="xmedium">Create new Game</b>
+                  </a>
+              </div>
+            </div>
 
+<<<<<<< HEAD
+            <!--President-->
+            <div id="President" class="margin-toper hide">
+              <p class="margin-left small text-grey">Pick one:</p>
+              <div class="container center">
+                  <a href="#" class="button teal block hover-cyan hover-text-white padding-24">
+                    <b class="xmedium">Create new Lobby</b>
+                  </a>
+              </div>
+              <div class="margin-toper container center">
+                   <input id="lobbyCodeInput" class="input left col s9 darker-grey xxlarge wider text-uppercase center" type="text" placeholder="Lobby code" maxlength="0"/>
+                    <a class="" onclick="joinLobby('President')">
+                      <i id="lobbyCodeButton" class="xxxxlarge center fa fa-sign-in cell-middle" aria-hidden="false"></i>
+                    </a>
+              </div>
+            </div>
+=======
         <!--President-->
         <div id="President" class="margin-toper hide">
           <p class="margin-left small text-grey">Pick one:</p>
@@ -74,7 +65,7 @@
                   <i id="lobbyCodeButton" class="xxxxlarge center fa fa-arrow-circle-right cell-middle" aria-hidden="true"></i>
                 </a>
           </div>
+>>>>>>> 1cc423210f86b137b9ce9379f749dd8ccef2f75a
         </div>
-
     </body>
 </html>
