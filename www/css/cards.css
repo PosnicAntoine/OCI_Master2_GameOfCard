@@ -4,6 +4,9 @@ body {
 	background: #f0f0f0;
   }
   .cards {
+  background-color: #f00;
+  width: 200px;
+  height: 200px;
 	text-align: center;
 	max-width: 640px;
 	margin: 0 auto;

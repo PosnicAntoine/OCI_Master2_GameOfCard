@@ -3,7 +3,11 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="/css/cards.css" />
-		<script src="/Picolo/GameManager.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		
+		<script src="/js/Card.js"></script>
+		<script src="/js/Picolo/GameManager.js"></script>
+		<script src="/js/Picolo/Picolo.js"></script>
 	</head>
 	
 
@@ -11,19 +15,12 @@
 
 		<h1 class="title">Picolo</h1>
 
-		<section class="cards">
-		<p>bonjour</p>
-
-		</section>
-
-		<script>
-			$(document).ready(function() {
-			$("#cards").click(function() {
-				switchCard()
+		<div id="deck" class="cards">
+		bonjour
 		
-			});
-			});
-		</script>
+		</div>
+
+		
 
 	</body>
 </html>

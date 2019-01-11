@@ -28,15 +28,8 @@ function init(evt){
 	    $('#President').addClass("show");
 	    break;
 	  default:
-	    $('#Picolo').addClass("show");
-	    $('#President').addClass("show");
 	}
 
 	$('#lobbyCodeInput').attr('maxlength',PRESIDENT_LOBBY_CODE_LENGTH);
-	$('#lobbyCodeInput').change(function(){
-		console.log("coucpouuu");
-		if($('#lobbyCodeInput').val().length >= PRESIDENT_LOBBY_CODE_LENGTH){
-			$('lobbyCodeButton').addClass("show");
-		}
-	});
+	$('#lobbyCodeInput').change(lobbyCodeInputChange());
 }
