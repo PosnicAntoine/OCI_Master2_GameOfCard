@@ -1,14 +1,15 @@
 body {
-	padding: 0;
+  padding: 0;
+  height : 100%;
 	margin: 0;
 	background: #f0f0f0;
   }
   .cards {
   background-color: #f00;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
 	text-align: center;
-	max-width: 640px;
+	/*max-width: 640px;*/
 	margin: 0 auto;
   }
   .card {
