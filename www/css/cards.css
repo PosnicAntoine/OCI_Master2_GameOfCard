@@ -15,8 +15,8 @@ html,body {
   .card {
 	position: relative;
 	display: inline-block;
-	width: 172px;
-	height: 240px;
+	width: 20%;
+	height: 60%;
 	font: 16px 'Trebuchet MS';
 	margin: 10px;
 	border-radius: 4px;
