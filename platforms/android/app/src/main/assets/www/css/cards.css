@@ -6,19 +6,30 @@ html,body {
   }
   .cards {
   background-color: #f00;
+<<<<<<< HEAD
+  width: 100%;
+  height: 100%;
+	text-align: center;
+=======
   width: 40%;
   min-width: 300px;
   height: 400px;
   text-align: center;
   padding-top: 1%;
+>>>>>>> db2a8c352f89612e8f306950a4341d2e355cf5e8
 	/*max-width: 640px;*/
 	margin: 0 auto;
   }
   .card {
 	position: relative;
 	display: inline-block;
+<<<<<<< HEAD
+	width: 20%;
+	height: 60%;
+=======
 	width: 90%;
   height: 90%;
+>>>>>>> db2a8c352f89612e8f306950a4341d2e355cf5e8
 	font: 16px 'Trebuchet MS';
 	margin: 10px;
 	border-radius: 4px;
