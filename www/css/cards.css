@@ -5,18 +5,20 @@ html,body {
 	background: #f0f0f0;
   }
   .cards {
-  background-color: #f00;
-  width: 100%;
-  height: 100%;
-	text-align: center;
+  /*background-color: #f00;*/
+  width: 40%;
+  min-width: 300px;
+  height: 400px;
+  text-align: center;
+  padding-top: 1%;
 	/*max-width: 640px;*/
 	margin: 0 auto;
   }
   .card {
 	position: relative;
 	display: inline-block;
-	width: 20%;
-	height: 60%;
+	width: 90%;
+  height: 90%;
 	font: 16px 'Trebuchet MS';
 	margin: 10px;
 	border-radius: 4px;
@@ -46,15 +48,15 @@ html,body {
   }
   .card--heart:before,
   .card--heart:after {
-	content: attr(value) ' ♥';
+	content: attr(value) ' \2665';
   }
 
   .card--diamond {
 	color: #e44145;
   }
-  card--diamond:before,
+  .card--diamond:before,
   .card--diamond:after {
-	content: attr(value) ' ♦';
+	content: attr(value) ' \2666';
   }
 
   .card--spade {
@@ -62,7 +64,7 @@ html,body {
   }
   .card--spade:before,
   .card--spade:after {
-	content: attr(value) ' ♠';
+	content: attr(value) ' \2660';
   }
 
   .card--club {
@@ -70,7 +72,7 @@ html,body {
   }
   .card--club:before,
   .card--club:after {
-	content: attr(value) ' ♣';
+	content: attr(value) ' \2663';
   }
   .card__inner {
 	box-sizing: border-box;
@@ -103,16 +105,16 @@ html,body {
 	line-height: 40px;
   }
   .card--heart .card__symbol:before {
-	content: '♥';
+	content: '\2665';
   }
   .card--spade .card__symbol:before {
-	content: '♠';
+	content: '\2660';
   }
   .card--diamond .card__symbol:before {
-	content: '♦';
+	content: '\2666';
   }
   .card--club .card__symbol:before {
-	content: '♣';
+	content: '\2663';
   }
   
   .card__symbol--rotated,
@@ -133,29 +135,39 @@ html,body {
 
   .king{
 	font-size: 100px;
-	line-height: 180px;
+	line-height: 250%;
   }
   .king:before{
-	content: '♔';
+	content: '\2654';
   }
   .queen{
 	font-size: 100px;
-	line-height: 180px;
+	line-height: 250%;
   }
   .queen:before{
-	content: '♛';
+	content: '\265B';
   }
   .jack{
 	font-size: 100px;
-	line-height: 180px;
+	line-height: 250%;
   }
   .jack:before{
-	content: '♝';
+	content: '\265D';
   }
 
-  .card__symbol.ace:before{
-	font-size: 100px;
-	line-height: 180px;
+
+  @media (max-width:600px){
+    .card__symbol.ace:before{
+    font-size: 50px;
+    line-height: 400%;
+    }
+  }
+
+  @media (min-width:601px){
+    .card__symbol.ace:before{
+    font-size: 100px;
+    line-height: 250%;
+    }
   }
 
 
