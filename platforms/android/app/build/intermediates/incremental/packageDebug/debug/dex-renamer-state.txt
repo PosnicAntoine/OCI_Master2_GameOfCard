@@ -1,4 +1,0 @@
-#Mon Jan 14 11:29:04 CET 2019
-base.0=/home/quentin/Documents/Code/Oci/projetcartes/OCI_Master2_GameOfCard/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
-path.0=classes.dex
-renamed.0=classes.dex

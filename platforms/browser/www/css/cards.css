@@ -160,12 +160,14 @@ html,body {
     .card__symbol.ace:before{
     font-size: 50px;
     line-height: 400%;
+    }
   }
 
   @media (min-width:601px){
     .card__symbol.ace:before{
     font-size: 100px;
     line-height: 250%;
+    }
   }
 
 
