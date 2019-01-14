@@ -52,7 +52,7 @@ html,body {
   .card--diamond {
 	color: #e44145;
   }
-  card--diamond:before,
+  .card--diamond:before,
   .card--diamond:after {
 	content: attr(value) ' ♦';
   }
