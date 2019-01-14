@@ -6,7 +6,8 @@ html,body {
   }
   .cards {
   background-color: #f00;
-  width: 30%;
+  width: 40%;
+  min-width: 300px;
   height: 400px;
   text-align: center;
   padding-top: 1%;
@@ -134,29 +135,37 @@ html,body {
 
   .king{
 	font-size: 100px;
-	line-height: 180px;
+	line-height: 250%;
   }
   .king:before{
 	content: '\2654';
   }
   .queen{
 	font-size: 100px;
-	line-height: 180px;
+	line-height: 250%;
   }
   .queen:before{
 	content: '\265B';
   }
   .jack{
 	font-size: 100px;
-	line-height: 180px;
+	line-height: 250%;
   }
   .jack:before{
 	content: '\265D';
   }
 
-  .card__symbol.ace:before{
-	font-size: 100px;
-	line-height: 180px;
+
+  @media (max-width:600px){
+    .card__symbol.ace:before{
+    font-size: 50px;
+    line-height: 400%;
+  }
+
+  @media (min-width:601px){
+    .card__symbol.ace:before{
+    font-size: 100px;
+    line-height: 250%;
   }
 
 
