@@ -27,10 +27,19 @@ class GameManager{
      }
      
      switchCard(){
-        var current = this.deck.shift();
         var element = $("#deck");
-        var content = current.carteToHtml();
-        content += '</br>'+this.getRule(current);
+        var content = ""
+
+        if(this.deck.length > 0){
+            var current = this.deck.shift();
+            content = current.carteToHtml();
+            content += '</br>'+this.getRule(current);
+        }
+        else{
+            this.filldeck();
+            this.shuffle();
+            content = "<img class = 'image' src='../../img/dos-bleu.png'>";
+        }
         element.html(content);
      }  
      createRules(){
