@@ -152,11 +152,7 @@
  html,body{
      font-family:Verdana,sans-serif;
      font-size:15px;
-<<<<<<< HEAD
-     line-height:1.5 
-=======
      line-height:1.5
->>>>>>> master
 }
  html{
      overflow-x:hidden 
@@ -1033,12 +1029,9 @@
  .margin-toper{
      margin-top:32px!important 
 }
-<<<<<<< HEAD
-=======
  .margin-toperer{
      margin-top:64px!important 
 }
->>>>>>> master
  .margin-bottom{
      margin-bottom:16px!important 
 }
@@ -1336,11 +1329,7 @@
      color:#757575!important 
 }
  .text-light-grey,.hover-text-light-grey:hover,.text-light-gray,.hover-text-light-gray:hover{
-<<<<<<< HEAD
-     color:#f1f1f1!important 
-=======
      color:#dbdbdb!important 
->>>>>>> master
 }
  .text-dark-grey,.hover-text-dark-grey:hover,.text-dark-gray,.hover-text-dark-gray:hover{
      color:#3a3a3a!important 

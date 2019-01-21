@@ -27,6 +27,8 @@ class GameManager{
      }
      
      switchCard(){
+        console.log(this.rules.length);
+        var current = this.deck.shift();
         var element = $("#deck");
         var content = ""
 
@@ -120,23 +122,31 @@ class GameManager{
     }
      
      getRule(card){
+         console.log(card);
          var value = card.value;
          var color = card.color;
          if(value < 5){
-            this.rules.forEach((rule) => {
-                if(rule.value == value){
-                    if(rule.color == color){
-                        return rule.getRuleAndTitle()
+            for(var jia = 0 ; jia<this.rules.length;jia++) {
+                console.log(this.rules[jia]);
+                if(this.rules[jia].value == value){
+                    if(this.rules[jia].color == color){
+                        var retour =  this.rules[jia].getRuleAndTitle();
+                        console.log("je suis passé par inferieur a 5");
+                        console.log(retour);
+                        return retour;
                     }
                 }
-             });
+             };
          }
          else{
-            this.rules.forEach((rule) => {
-                if(rule.value == value){
-                        return rule.getRuleAndTitle()
+            for(var ji = 0 ; ji<this.rules.length;ji++){
+                if(this.rules[ji].value == value){
+                        var retour =  this.rules[ji].getRuleAndTitle();
+                        console.log("je suis passé par supérieur a 5");
+                        console.log(retour);
+                        return retour;
                 }
-             });
+             };
          }
 
      }
