@@ -2,18 +2,11 @@ $(window).on('load', init);
 
 var PRESIDENT_LOBBY_CODE_LENGTH = 4;
 
-<<<<<<< HEAD
-
-function init(evt){
-    var values = window.location.search.substring(1);
-    var jeu = values.substring(values.indexOf('=')+1,values.indexOf('&'));
-=======
 var jeu;
 
 function init(evt){
     var values = window.location.search.substring(1);
     jeu = values.substring(values.indexOf('=')+1,values.indexOf('&'));
->>>>>>> master
     var lobbyCode = values.substring(values.indexOf('=', values.indexOf('&'))+1).toUpperCase();
    
     console.log("jeu :", jeu);
@@ -21,10 +14,7 @@ function init(evt){
 
     $("#titleLobbyGames").text(jeu);
     $("#codeLobby").text(lobbyCode);
-<<<<<<< HEAD
-=======
     $("#codeLobbyMark").text(lobbyCode);
->>>>>>> master
 
     switch(jeu) {
 	  case "President":
@@ -32,10 +22,8 @@ function init(evt){
 	    break;
 	  default:
 	}
-<<<<<<< HEAD
-=======
 
-    selectPlayer(1);
+    selectPlayer(6);
 
     activatePlayer(1);
     activatePlayer(2);
@@ -56,7 +44,28 @@ function precedentPage(){
 function selectPlayer(player){
     switch(player){
         case 1:
-            $('#playerOne').addClass("grey");
+            $('#playerOne>*:nth-child(2)').removeClass("hide");
+            break;
+        case 2:
+            $('#playerTwo>*:nth-child(2)').removeClass("hide");
+            break;
+        case 3:
+            $('#playerThree>*:nth-child(2)').removeClass("hide");
+            break;
+        case 4:
+            $('#playerFour>*:nth-child(2)').removeClass("hide");
+            break;
+        case 5:
+            $('#playerFive>*:nth-child(2)').removeClass("hide");
+            break;
+        case 6:
+            $('#playerSix>*:nth-child(2)').removeClass("hide");
+            break;
+        case 7:
+            $('#playerSeven>*:nth-child(2)').removeClass("hide");
+            break;
+        case 8:
+            $('#playerEight>*:nth-child(2)').removeClass("hide");
             break;
         default:
     }
@@ -116,5 +125,4 @@ function activatePlayer(player){
       default:
     }
 
->>>>>>> master
 }

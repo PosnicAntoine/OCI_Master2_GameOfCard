@@ -23,7 +23,7 @@ function init(evt){
 	  default:
 	}
 
-    selectPlayer(1);
+    selectPlayer(6);
 
     activatePlayer(1);
     activatePlayer(2);
@@ -44,7 +44,28 @@ function precedentPage(){
 function selectPlayer(player){
     switch(player){
         case 1:
-            $('#playerOne').addClass("grey");
+            $('#playerOne>*:nth-child(2)').removeClass("hide");
+            break;
+        case 2:
+            $('#playerTwo>*:nth-child(2)').removeClass("hide");
+            break;
+        case 3:
+            $('#playerThree>*:nth-child(2)').removeClass("hide");
+            break;
+        case 4:
+            $('#playerFour>*:nth-child(2)').removeClass("hide");
+            break;
+        case 5:
+            $('#playerFive>*:nth-child(2)').removeClass("hide");
+            break;
+        case 6:
+            $('#playerSix>*:nth-child(2)').removeClass("hide");
+            break;
+        case 7:
+            $('#playerSeven>*:nth-child(2)').removeClass("hide");
+            break;
+        case 8:
+            $('#playerEight>*:nth-child(2)').removeClass("hide");
             break;
         default:
     }
