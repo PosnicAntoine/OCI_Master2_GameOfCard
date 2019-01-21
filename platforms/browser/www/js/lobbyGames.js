@@ -2,18 +2,11 @@ $(window).on('load', init);
 
 var PRESIDENT_LOBBY_CODE_LENGTH = 4;
 
-<<<<<<< HEAD
-
-function init(evt){
-    var values = window.location.search.substring(1);
-    var jeu = values.substring(values.indexOf('=')+1,values.indexOf('&'));
-=======
 var jeu;
 
 function init(evt){
     var values = window.location.search.substring(1);
     jeu = values.substring(values.indexOf('=')+1,values.indexOf('&'));
->>>>>>> master
     var lobbyCode = values.substring(values.indexOf('=', values.indexOf('&'))+1).toUpperCase();
    
     console.log("jeu :", jeu);
@@ -21,10 +14,7 @@ function init(evt){
 
     $("#titleLobbyGames").text(jeu);
     $("#codeLobby").text(lobbyCode);
-<<<<<<< HEAD
-=======
     $("#codeLobbyMark").text(lobbyCode);
->>>>>>> master
 
     switch(jeu) {
 	  case "President":
@@ -32,8 +22,6 @@ function init(evt){
 	    break;
 	  default:
 	}
-<<<<<<< HEAD
-=======
 
     selectPlayer(1);
 
@@ -116,5 +104,4 @@ function activatePlayer(player){
       default:
     }
 
->>>>>>> master
 }

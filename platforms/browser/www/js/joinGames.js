@@ -2,10 +2,7 @@ $(window).on('load', init);
 
 
 var PRESIDENT_LOBBY_CODE_LENGTH = 4;
-<<<<<<< HEAD
-=======
 var LOBBY_CODE_CHARS = "abcdefghijklmnopqrstuvwxyz0123456789";
->>>>>>> master
 
 
 /**
@@ -39,8 +36,6 @@ function init(evt){
 	//$('#lobbyCodeInput').change(lobbyCodeInputChange());
 }
 
-<<<<<<< HEAD
-=======
 function makeid() {
   var text = "";
 
@@ -57,7 +52,6 @@ function createLobby(gameName){
 		window.location.href = 'lobbyGames.html?jeux='+gameName+'&lobbyCode='+code;
 }
 
->>>>>>> master
 function joinLobby(gameName){
 	var code = $('#lobbyCodeInput').val();
 	if(code.length == PRESIDENT_LOBBY_CODE_LENGTH)
