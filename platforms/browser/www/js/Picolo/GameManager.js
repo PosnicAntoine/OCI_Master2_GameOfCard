@@ -1,5 +1,5 @@
+var kingnumber = 0;
 class GameManager{
-
     constructor(){
         this.deck = [];
         this.rules = [];
@@ -27,17 +27,32 @@ class GameManager{
      }
      
      switchCard(){
-        console.log(this.rules.length);
-        var current = this.deck.shift();
-        var element = $("#deck");
+
         var content = ""
+        var element = $("#deck");
+        
 
         if(this.deck.length > 0){
             var current = this.deck.shift();
-            content = current.carteToHtml();
-            content += '</br>'+this.getRule(current);
+            if(current.value == 13){
+                if(kingnumber == 3){
+                    content = current.carteToHtml();
+                    var rulee = new Rules("Dernier roi", "Pas de bol, tu bois le verre du milieu",13,"blc");
+                    content += rulee.getRuleAndTitle();
+                }
+                else{
+                    kingnumber ++;
+                    content = current.carteToHtml();
+                    content += this.getRule(current);
+                }
+            }
+            else{
+                content = current.carteToHtml();
+                content += this.getRule(current);
+            }
         }
         else{
+            kingnumber =0;
             this.filldeck();
             this.shuffle();
             content = "<img class = 'image' src='../../img/dos-bleu.png'>";
@@ -45,18 +60,18 @@ class GameManager{
         element.html(content);
      }  
      createRules(){
-        var rule2diamond = new Rules('Cheh','Tu bois 2 gorgés',2,'diamond');
-        var rule2heart = new Rules('Cheh','Tu bois 2 gorgés',2,'heart');
-        var rule2spade = new Rules('Nice','Tu distribues 2 gorgés',2,'spade');
-        var rule2club = new Rules('Nice','Tu distribues 2 gorgés',2,'club');
-        var rule3diamond = new Rules('Cheh','Tu bois 3 gorgés',3,'diamond');
-        var rule3heart = new Rules('Cheh','Tu bois 3 gorgés',3,'heart');
-        var rule3spade = new Rules('Nice','Tu distribues 3 gorgés',3,'spade');
-        var rule3club = new Rules('Nice','Tu distribues 3 gorgés',3,'club');
-        var rule4diamond = new Rules('Cheh','Tu bois 4 gorgés',4,'diamond');
-        var rule4heart = new Rules('Cheh','Tu bois 4 gorgés',4,'heart');
-        var rule4spade = new Rules('Nice','Tu distribues 4 gorgés',4,'spade');
-        var rule4club = new Rules('Nice','Tu distribues 4 gorgés',4,'club');
+        var rule2diamond = new Rules('Cheh','Tu bois 2 gorg&eacutes',2,'diamond');
+        var rule2heart = new Rules('Cheh','Tu bois 2 gorg&eacutes',2,'heart');
+        var rule2spade = new Rules('Nice','Tu distribues 2 gorg&eacutes',2,'spade');
+        var rule2club = new Rules('Nice','Tu distribues 2 gorg&eacutes',2,'club');
+        var rule3diamond = new Rules('Cheh','Tu bois 3 gorg&eacutes',3,'diamond');
+        var rule3heart = new Rules('Cheh','Tu bois 3 gorg&eacutes',3,'heart');
+        var rule3spade = new Rules('Nice','Tu distribues 3 gorg&eacutes',3,'spade');
+        var rule3club = new Rules('Nice','Tu distribues 3 gorg&eacutes',3,'club');
+        var rule4diamond = new Rules('Cheh','Tu bois 4 gorg&eacutes',4,'diamond');
+        var rule4heart = new Rules('Cheh','Tu bois 4 gorg&eacutes',4,'heart');
+        var rule4spade = new Rules('Nice','Tu distribues 4 gorg&eacutes',4,'spade');
+        var rule4club = new Rules('Nice','Tu distribues 4 gorg&eacutes',4,'club');
         this.rules.push(rule2diamond);
         this.rules.push(rule2spade);
         this.rules.push(rule2heart);
@@ -78,9 +93,16 @@ class GameManager{
         var rule11;
         var rule12;
         var rule13;
-        var rule1;
+        var rule1 = new Rules('Fontaine', 'Tout le monde commence a boire tant que le tireur de la carte n"arrête pas de boire, les autres doivent boire quand il a fini, celui de sa droite peut arreter, quand celui la a fini, celui a sa droite peut arreter, ainsi de suite.',1,'diamond');
+        var rule12 = new Rules('Fontaine', 'Tout le monde commence a boire tant que le tireur de la carte n"arrête pas de boire, les autres doivent boire quand il a fini, celui de sa droite peut arreter, quand celui la a fini, celui a sa droite peut arreter, ainsi de suite.',1,'spade');
+        var rule13 = new Rules('Fontaine', 'Tout le monde commence a boire tant que le tireur de la carte n"arrête pas de boire, les autres doivent boire quand il a fini, celui de sa droite peut arreter, quand celui la a fini, celui a sa droite peut arreter, ainsi de suite.',1,'heart');
+        var rule14 = new Rules('Fontaine', 'Tout le monde commence a boire tant que le tireur de la carte n"arrête pas de boire, les autres doivent boire quand il a fini, celui de sa droite peut arreter, quand celui la a fini, celui a sa droite peut arreter, ainsi de suite.',1,'club');
+        this.rules.push(rule1);
+        this.rules.push(rule12);
+        this.rules.push(rule13);
+        this.rules.push(rule14);
         for(var i=0;i<4;i++){
-            rule5 = new Rules('Regle', 'Creer une nouvelle regle lié au jeu, elles se cumulent', 5 ,'blc');
+            rule5 = new Rules('Regle', 'Creer une nouvelle regle li&eacute au jeu, elles se cumulent', 5 ,'blc');
             this.rules.push(rule5);
         }
         for(var i=0;i<4;i++){
@@ -96,11 +118,11 @@ class GameManager{
             this.rules.push(rule8);
         }
         for(var i=0;i<4;i++){
-            rule9 = new Rules('Thème', 'Tu choisis un thème (films, séries, planètes) le premier qui n"a pas de réponse ou qui répete bois',9,'blc');
+            rule9 = new Rules('Thème', 'Tu choisis un theme (films, s&eacuteries, planètes) le premier qui n"a pas de réponse ou qui r&eacutepete bois',9,'blc');
             this.rules.push(rule9);
         }
         for(var i=0;i<4;i++){
-            rule10 = new Rules('Bois avec un ami', 'Tu choisis un ami et tu bois une gorgé avec',10,'blc');
+            rule10 = new Rules('Bois avec un ami', 'Tu choisis un ami et tu bois une gorg&eacute avec',10,'blc');
             this.rules.push(rule10);
         }
         for(var i=0;i<4;i++){
@@ -114,10 +136,6 @@ class GameManager{
         for(var i=0;i<4;i++){
             rule13 = new Rules('King of the drink', 'Mets un peu de ton verre dans le verre central',13,'blc');
             this.rules.push(rule13);
-        }
-        for(var i=0;i<4;i++){
-            rule1 = new Rules('Fontaine', 'Tout le monde commence a boire tant que le tireur de la carte n"arrête pas de boire, les autres doivent boire quand il a fini, celui de sa droite peut arreter, quand celui la a fini, celui a sa droite peut arreter, ainsi de suite.',1,'blc');
-            this.rules.push(rule1);
         }
     }
      

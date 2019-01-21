@@ -7,6 +7,6 @@ class Rules {
         console.log(this.title);
     }
     getRuleAndTitle(){
-            return '<h3>'+ this.title +' :</h3><br></br><p>'+ this.text+'</p>';
+            return '<h3>'+ this.title +' :</h3><p>'+ this.text+'</p>';
         }
     }
