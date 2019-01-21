@@ -30,7 +30,7 @@ class GameManager{
 
         var content = ""
         var element = $("#deck");
-        
+        $("#numberCard").text(this.deck.length);
 
         if(this.deck.length > 0){
             var current = this.deck.shift();

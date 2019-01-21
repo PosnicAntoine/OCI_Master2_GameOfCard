@@ -30,7 +30,7 @@ class GameManager{
 
         var content = ""
         var element = $("#deck");
-        
+        $("#numberCard").text(this.deck.length);
 
         if(this.deck.length > 0){
             var current = this.deck.shift();
@@ -118,7 +118,7 @@ class GameManager{
             this.rules.push(rule8);
         }
         for(var i=0;i<4;i++){
-            rule9 = new Rules('Thème', 'Tu choisis un theme (films, s&eacuteries, planètes) le premier qui n"a pas de réponse ou qui r&eacutepete bois',9,'blc');
+            rule9 = new Rules('Theme', 'Tu choisis un theme (films, s&eacuteries, planetes) le premier qui n"a pas de reponse ou qui r&eacutepete bois',9,'blc');
             this.rules.push(rule9);
         }
         for(var i=0;i<4;i++){
