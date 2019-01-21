@@ -29,17 +29,18 @@ class GameManager{
      switchCard(){
 
         var content = ""
+        var element = $("#deck");
+        
 
-        if(this.deck.length === 0){
+        if(this.deck.length > 0){
             var current = this.deck.shift();
-            var element = $("#deck");
             content = current.carteToHtml();
             content += '</br>'+this.getRule(current);
         }
         else{
             this.filldeck();
             this.shuffle();
-            content = "PLUS DE CARTES"
+            content = "<img class = 'image' src='../../img/dos-bleu.png'>";
         }
         element.html(content);
      }  
