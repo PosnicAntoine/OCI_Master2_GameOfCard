@@ -13,6 +13,7 @@
             html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         </style>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="../js/PeerManager.js" ></script>
         <script src="../js/joinGames.js" ></script>
         <title>GameOfCard</title>
     </head>
@@ -44,7 +45,7 @@
               </div>
               <p class="margin-left margin-toperer medium text-light-grey">Or join one:</p>
               <div class="container center">
-                   <input id="lobbyCodeInput" class="input left col s9 darker-grey xxlarge wider text-uppercase center" type="text" placeholder="Lobby code" maxlength="0"/>
+                   <input id="lobbyCodeInput" class="input left col s9 darker-grey xxlarge text-uppercase center" type="text" placeholder="Lobby code" maxlength="0"/>
                     <a class="" onclick="joinLobby('President')">
                       <i id="lobbyCodeButton" class="xxxxlarge center fa fa-sign-in cell-middle" aria-hidden="false"></i>
                     </a>

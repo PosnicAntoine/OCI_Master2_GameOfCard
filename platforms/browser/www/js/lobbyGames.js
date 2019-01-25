@@ -1,16 +1,21 @@
 $(window).on('load', init);
 
-var PRESIDENT_LOBBY_CODE_LENGTH = 4;
+var PRESIDENT_LOBBY_CODE_LENGTH = 12;
 
 var jeu;
+var peer;
 
 function init(evt){
+
     var values = window.location.search.substring(1);
-    jeu = values.substring(values.indexOf('=')+1,values.indexOf('&'));
-    var lobbyCode = values.substring(values.indexOf('=', values.indexOf('&'))+1).toUpperCase();
-   
+    jeu = values.substring(values.indexOf("jeux=")+5, values.indexOf('&lobbyCode'));
+    var lobbyCode = values.substring(values.indexOf("lobbyCode=") + 10, values.indexOf("lobbyCode=") + 10 + PRESIDENT_LOBBY_CODE_LENGTH).toUpperCase();
+    var isHostString = values.substring(values.indexOf("isHost=") + 7);
+        
     console.log("jeu :", jeu);
-    console.log("lobbyCode :", lobbyCode);
+    console.log("lobbyCode :", lobbyCode.toLowerCase());
+    var isHost = isHostString == 'true' ? true : false;
+    console.log("isHost :", isHost);
 
     $("#titleLobbyGames").text(jeu);
     $("#codeLobby").text(lobbyCode);
@@ -21,9 +26,12 @@ function init(evt){
 	    $('#President').addClass("show");
 	    break;
 	  default:
-	}
-
-    selectPlayer(6);
+    }
+    peer = new PeerManager(isHost, lobbyCode.toLowerCase(), precedentPage);
+    peer.id = lobbyCode;
+    //var peer2 = new PeerManager(isHost, lobbyCode);
+    console.log("peer : ", peer/*, "peer2 : ", peer2*/);
+/*    selectPlayer(6);
 
     activatePlayer(1);
     activatePlayer(2);
@@ -31,7 +39,7 @@ function init(evt){
     activatePlayer(4);
 
     activatePlayer(5);
-    activatePlayer(6);
+    activatePlayer(6);*/
     //activatePlayer(7);
     //activatePlayer(8);
 }

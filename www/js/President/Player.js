@@ -1,9 +1,9 @@
 var RankEnum = {
-    Trouduc = 0,
-    ViceTrou = 1,
-    Neutre = 2,
-    VicePres = 3,
-    President = 4
+    Trouduc: 0,
+    ViceTrou: 1,
+    Neutre: 2,
+    VicePres: 3,
+    President: 4
 };
 
 
@@ -16,8 +16,9 @@ class Player{
         this.id = id;
     }
 
-
-
+    GetId(){
+        return this.id;
+    }
 
 }
 
