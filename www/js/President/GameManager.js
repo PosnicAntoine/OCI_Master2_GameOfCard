@@ -83,7 +83,11 @@ class GameManager {
       this.tas[this.tas.length-1].carteToHtml();
     }
     htmloflocalplayer(){
-        
+        var rep = "";
+        for(let i=0;i<this.localPlayer.hand.length;i++){
+           rep+= this.localPlayer.hand[i].carteToHtml();
+        }
+        return rep;
     }
 
 }
