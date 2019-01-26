@@ -27,110 +27,98 @@ function init(evt){
 	    break;
 	  default:
     }
-    peer = new PeerManager(isHost, lobbyCode.toLowerCase(), precedentPage);
-    peer.id = lobbyCode;
-    //var peer2 = new PeerManager(isHost, lobbyCode);
-    console.log("peer : ", peer/*, "peer2 : ", peer2*/);
-/*    selectPlayer(6);
-
-    activatePlayer(1);
-    activatePlayer(2);
-    activatePlayer(3);
-    activatePlayer(4);
-
-    activatePlayer(5);
-    activatePlayer(6);*/
-    //activatePlayer(7);
-    //activatePlayer(8);
+    if(isHost){
+        peer = new HostPeerManager(lobbyCode.toLowerCase(), precedentPage, activatePlayer, deactivatePlayer, selectPlayer);
+    }else{
+        peer = new ClientPeerManager(lobbyCode.toLowerCase(), precedentPage, activatePlayer, deactivatePlayer, selectPlayer);
+    }
+    
+    console.log("peer : ", peer);
 }
 
 function precedentPage(){
+    peer.Disconnect();
     window.location.href = 'joinGames.html?jeux='+jeu;
 }
 
 
 function selectPlayer(player){
-    switch(player){
-        case 1:
-            $('#playerOne>*:nth-child(2)').removeClass("hide");
-            break;
-        case 2:
-            $('#playerTwo>*:nth-child(2)').removeClass("hide");
-            break;
-        case 3:
-            $('#playerThree>*:nth-child(2)').removeClass("hide");
-            break;
-        case 4:
-            $('#playerFour>*:nth-child(2)').removeClass("hide");
-            break;
-        case 5:
-            $('#playerFive>*:nth-child(2)').removeClass("hide");
-            break;
-        case 6:
-            $('#playerSix>*:nth-child(2)').removeClass("hide");
-            break;
-        case 7:
-            $('#playerSeven>*:nth-child(2)').removeClass("hide");
-            break;
-        case 8:
-            $('#playerEight>*:nth-child(2)').removeClass("hide");
-            break;
-        default:
-    }
+    var div = $("#squarecontainer>div:nth-child(" + player + ")");
+    div.last().removeClass("hide");
 }
 
 function activatePlayer(player){
+    var div = $("#squarecontainer>div:nth-child(" + player + ")");
+    var text_color;
     switch(player) {
       case 1:
-        $('#playerOne').addClass("text-blue");
-        $('#playerOne').removeClass("text-dark-grey");
-        $('#playerOne>*').first().addClass("fa-check-square");
-        $('#playerOne>*').first().removeClass("fa-square-o");
+      text_color = "text-blue";
         break;
       case 2:
-        $('#playerTwo').addClass("text-red");
-        $('#playerTwo').removeClass("text-dark-grey");
-        $('#playerTwo>*').first().addClass("fa-check-square");
-        $('#playerTwo>*').first().removeClass("fa-square-o");
+      text_color = "text-red";
         break;
       case 3:
-        $('#playerThree').addClass("text-green");
-        $('#playerThree').removeClass("text-dark-grey");
-        $('#playerThree>*').first().addClass("fa-check-square");
-        $('#playerThree>*').first().removeClass("fa-square-o");
+      text_color = "text-green";
         break;
       case 4:
-        $('#playerFour').addClass("text-yellow");
-        $('#playerFour').removeClass("text-dark-grey");
-        $('#playerFour>*').first().addClass("fa-check-square");
-        $('#playerFour>*').first().removeClass("fa-square-o");
+      text_color = "text-yellow";
         break;
 
       case 5:
-        $('#playerFive').addClass("text-purple");
-        $('#playerFive').removeClass("text-dark-grey");
-        $('#playerFive>*').first().addClass("fa-check-square");
-        $('#playerFive>*').first().removeClass("fa-square-o");
+      text_color = "text-purple";
         break;
       case 6:
-        $('#playerSix').addClass("text-orange");
-        $('#playerSix').removeClass("text-dark-grey");
-        $('#playerSix>*').first().addClass("fa-check-square");
-        $('#playerSix>*').first().removeClass("fa-square-o");
+      text_color = "text-orange";
         break;
       case 7:
-        $('#playerSeven').addClass("text-pink");
-        $('#playerSeven').removeClass("text-dark-grey");
-        $('#playerSeven>*').first().addClass("fa-check-square");
-        $('#playerSeven>*').first().removeClass("fa-square-o");
+      text_color = "text-pink";
         break;
       case 8:
-        $('#playerEight').addClass("text-brown");
-        $('#playerEight').removeClass("text-dark-grey");
-        $('#playerEight>*').first().addClass("fa-check-square");
-        $('#playerEight>*').first().removeClass("fa-square-o");
+      text_color = "text-brown";
         break;
       default:
+      text_color = "text-dark-grey";
     }
+    $(div).addClass(text_color);
+    $(div).removeClass("text-dark-grey");
+    $(div).children().first().addClass("fa-check-square");
+    $(div).children().first().removeClass("fa-square-o");
+}
 
+function deactivatePlayer(player){
+    var div = $("#squarecontainer>div:nth-child(" + player + ")");
+    var text_color;
+    switch(player) {
+      case 1:
+      text_color = "text-blue";
+        break;
+      case 2:
+      text_color = "text-red";
+        break;
+      case 3:
+      text_color = "text-green";
+        break;
+      case 4:
+      text_color = "text-yellow";
+        break;
+
+      case 5:
+      text_color = "text-purple";
+        break;
+      case 6:
+      text_color = "text-orange";
+        break;
+      case 7:
+      text_color = "text-pink";
+        break;
+      case 8:
+      text_color = "text-brown";
+        break;
+      default:
+      text_color = "text-dark-grey";
+    }
+    $(div).removeClass(text_color);
+    $(div).addClass("text-dark-grey");
+    $(div).children().first().removeClass("fa-check-square");
+    $(div).children().first().addClass("fa-square-o");
 }

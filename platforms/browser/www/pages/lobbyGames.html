@@ -17,7 +17,8 @@
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.9/peer.min.js"></script>-->
         <script src="../js/peer_js_min.js" ></script>
         <script src="../js/President/Player.js" ></script>
-        <script src="../js/PeerManager.js" ></script>
+        <script src="../js/HostPeerManager.js" ></script>
+        <script src="../js/ClientPeerManager.js" ></script>
         <script src="../js/lobbyGames.js" ></script>
         <title>GameOfCard</title>
     </head>
@@ -37,7 +38,7 @@
             <p class="margin-top xmedium text-light-grey center">Give the code <mark id="codeLobbyMark" class="cyan text-dark-grey padding-small large"></mark> to your friend!</p>
 
 
-            <div class="container margin-toper center">
+            <div id="squarecontainer" class="container margin-toper center">
                 <div id="playerOne" class="col s3 center text-dark-grey display-container">
                     <i class="fa fa-square-o xxxxlarge"></i>
                     <i class="fa fa-caret-down text-paler-yellow xxxxxlarge display-topermiddle hide"></i>
