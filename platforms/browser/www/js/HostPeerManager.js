@@ -1,12 +1,13 @@
 var DEFAULT_API_KEY = "lwjd5qra8257b9";
 
 class HostPeerManager{
-    constructor(idHost, previousPageMethod, activatePlayerMethod, deactivatePlayerMethod, selectPlayerMethod){
+    constructor(previousPageMethod, activatePlayerMethod, deactivatePlayerMethod, selectPlayerMethod, displayGamePlateMethod){
         this.conn;
         this.actualPlayer;
-        this.peer = new Peer({id: idHost, key: DEFAULT_API_KEY});
+        this.DisplayGamePlate = displayGamePlateMethod;
+        this.peer = new Peer({key: DEFAULT_API_KEY});
         this.AliveConnections = [];
-        this.nbConnection = 0;
+        this.nbConnection = 1;
         this.actualPlayer = new Player(1);
         this.PreviousPage = previousPageMethod;
         this.ActivatePlayer = activatePlayerMethod;
@@ -21,8 +22,7 @@ class HostPeerManager{
                 console.log("Received connection : ",newConnection);
                 this.handleNewConnection(newConnection);
             });
-            //var arrayId = id.substring(0, PRESIDENT_LOBBY_CODE_LENGTH);
-            //console.log(arrayId.toUpperCase());
+
             var text = id.substring(0, PRESIDENT_LOBBY_CODE_LENGTH).toUpperCase();
             $("#codeLobby").text(text);
             $("#codeLobbyMark").text(text.substring(0, PRESIDENT_LOBBY_CODE_LENGTH));
@@ -30,7 +30,23 @@ class HostPeerManager{
         this.peer.on('error', (err)=>{
             console.log("Error while creating peer :", err);
             //this.PreviousPage();
-        })
+        });
+
+        this.StartGame = () =>{
+            for(var i = 0; i < this.AliveConnections.length; i++){
+                var playerId = this.AliveConnections[i].GetPlayerId();
+                var StartGameMessage = {
+                    type: "GAME_STARTING",
+                    otherIdPlayers: this.returnPlayersListWithoutId(playerId)
+                }
+                this.AliveConnections[i].SendToPlayer(StartGameMessage);
+            }
+            var ownId = this.actualPlayer.GetId();
+            this.DisplayGamePlate(this.returnPlayersListWithoutId(ownId), ownId);
+            this.gameManager = new HostGameManager(this.returnPlayersListWithoutId(ownId), ownId, this);
+        }
+
+        $('#StartGameButton').on("click",this.StartGame);
     }
     
     handleNewConnection(newConnection){
@@ -40,6 +56,7 @@ class HostPeerManager{
         this.peer.connections[newId].on('open', ()=>{
             //console.log("OPEN CONNECTION " + this.nbConnection + " (INIT)");
             //this.afterConnect();
+            this.nbConnection++;
             var message = {
                 type: "ASSIGNING_PLAYER_ON_CONNECT",
                 idPlayer: newId,
@@ -66,6 +83,7 @@ class HostPeerManager{
     handleDeconnection(idPlayerDisconnected){
         var connectionAndPlayer = this.getConnectionAndPlayersFromPlayerId(idPlayerDisconnected);
         if(connectionAndPlayer != null){
+            this.nbConnection--;
             var idPlayer = connectionAndPlayer.GetPlayerId();
             this.DeactivatePlayer(idPlayer);
             var DisconnectionMessage = {
@@ -116,7 +134,7 @@ class HostPeerManager{
             if(idPlayer != id)
                 ret.push(idPlayer);
         }
-        console.log("player list wihtout " + id, ret);
+        //console.log("player list wihtout " + id, ret);
         return ret;
     }
 
@@ -137,7 +155,7 @@ class HostPeerManager{
 
     sendMessageToAll(message){
         for(var i = 0; i < this.AliveConnections.length; i++){
-            this.AliveConnections[i].connection.send(message);
+            this.AliveConnections[i].SendToPlayer(message);
         }
     }
     
@@ -168,19 +186,42 @@ class HostPeerManager{
         var DeconnectionMessage = {
             type: "HOST_DECONNECTION"
         }
-        sendMessageToAll(DeconnectionMessage);
+        this.sendMessageToAll(DeconnectionMessage);
     }
 
+    PlayersToJson(players){
+        var playersToJson = [];
+        for(var i = 0; i < players.length; i++){
+            playersToJson.push(players[i].ToJson());
+        }
+        return playersToJson;
+    }
+
+    SendCardsToAllPlayers(players){
+        var playersToJson = this.PlayersToJson(players);
+        console.log("playersToJson :", playersToJson);
+        var messageAfterDistribution = {
+            type: "DISTRIBUTION_OVER",
+            players: playersToJson
+        };
+
+        this.sendMessageToAll(messageAfterDistribution);
+    }
 }
 
 class ConnectionAndPlayer{
+
     constructor(connection, id){
         this.connection = connection;
-        this.player = new Player(id);
+        this.playerId = id;
+    }
+
+    SendToPlayer(message){
+        this.connection.send(message);
     }
 
     GetPlayerId(){
-        return this.player.GetId();
+        return this.playerId;
     }
 }
 

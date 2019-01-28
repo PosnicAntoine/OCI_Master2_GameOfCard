@@ -1,42 +1,20 @@
 class GameManager {
-    constructor(players,localPlayer) {
+    constructor(playersId,localPlayerId, peerManager) {
+        var players = [];
+        for(var i = 0; i < playersId.length; i++){
+            players[playersId[i]-1] = new Player(playersId[i]);
+        }
+        this.localPlayer = new Player(localPlayerId);
+        players[localPlayerId-1] = this.localPlayer;
+        this.peerManager = peerManager;
         this.players = players;
+        //console.log("players :", this.players);
         this.deck = [];
         this.tas = [];
-        this.playing = players[0];
-        this.currentNumber = 0;
-        this.finishplayers=4;
-        this.localPlayer=localPlayer;
-        filldeck();
-        shuffle();
-        distribute();
-
+        this.playing = this.players[0];
+        this.currentCardNumber = 0;
+        this.finishplayers = 4;
     }
-    filldeck() {
-        for (var i = 1; i < 14; i++) {
-            var card1 = new Card(i, 'heart');
-            var card3 = new Card(i, 'diamond');
-            var card2 = new Card(i, 'spade');
-            var card4 = new Card(i, 'club');
-            this.deck.push(card1);
-            this.deck.push(card2);
-            this.deck.push(card3);
-            this.deck.push(card4);
-        }
-    }
-    shuffle() {
-        for (let i = this.deck.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
-        }
-    }
-    distribute() {
-        for (let i = 0; i < this.deck.length; i++) {
-            let taker = i % this.players.length;
-            this.players[taker].hand.push(this.deck[i]);
-        }
-    }
-
     pass() {
         for (let i = 0; this.players.length; i++) {
             if (this.players[i].id == playing.id) {
@@ -46,10 +24,10 @@ class GameManager {
         }
     }
     play(cards) {
-        if (cards.length != this.currentNumber) {
+        if (cards.length != this.currentCardNumber) {
             let cartesnombre;
             let tailleTas = this.tas.length;
-            switch (this.currentNumber) {
+            switch (this.currentCardNumber) {
                 case 1: cartesnombre = "simple"; break;
                 case 2: cartesnombre = "double"; break;
                 case 3: cartesnombre = "triplette"; break;
@@ -57,9 +35,9 @@ class GameManager {
             }
             return "Pas le bon nombre de carte, il faut jouer en " + cartesnombre;
         }
-        else if (this.currentNumber > 1) {
+        else if (this.currentCardNumber > 1) {
             let current = cards[0].value;
-            for (let i = 0; i < cards.length; i++) {
+            for (var i = 0; i < cards.length; i++) {
                 if (current != cards[i].value) {
                     return "Tu ne peux pas jouer des cartes de valeurs différentes";
                 }
@@ -69,26 +47,37 @@ class GameManager {
             return "Tu ne peux pas jouer des cartes inférieures à celle posée sur le tas";
         }
         else{
-            for(let i=0;i<cards.length;i++){
+            for(var i = 0; i < cards.length; i++){
                 tas.push[cards[i]];
                 if(this.playing.hand.length==0){
                     this.playing.rank=this.finishplayers;
                     finishplayers--;
                 }
-                pass();
+                this.pass();
             }
         }
     }
     getLastCardofTas(){
       this.tas[this.tas.length-1].carteToHtml();
     }
+
     htmloflocalplayer(){
         var rep = "";
         for(let i=0;i<this.localPlayer.hand.length;i++){
-           rep+= this.localPlayer.hand[i].carteToHtml();
-        }
+           rep += this.localPlayer.hand[i].carteToHtml();
+        }players.push
         return rep;
     }
 
+    SetPlayersCard(playersJson){
+        for(var i = 0; i < playersJson.length; i++){
+            this.players[playersJson[i].id-1].SetCards(playersJson[i].cards);
+        }
+    }
+
+    PlayerGetCard(idPlayer, card){
+        //console.log(idPlayer + " :", this.players[idPlayer]);
+        this.players[idPlayer].AddCard(card);
+    }
 }
 

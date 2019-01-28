@@ -6,31 +6,42 @@ var jeu;
 var peer;
 
 function init(evt){
-
+    var isHost;
     var values = window.location.search.substring(1);
-    jeu = values.substring(values.indexOf("jeux=")+5, values.indexOf('&lobbyCode'));
-    var lobbyCode = values.substring(values.indexOf("lobbyCode=") + 10, values.indexOf("lobbyCode=") + 10 + PRESIDENT_LOBBY_CODE_LENGTH).toUpperCase();
-    var isHostString = values.substring(values.indexOf("isHost=") + 7);
+    if(values.indexOf('&') == -1){
+      jeu = values.substring(values.indexOf("jeux=")+5);
+      isHost = true;
+    }else {
+      jeu = values.substring(values.indexOf("jeux=")+5, values.indexOf("&lobbyCode"));
+      var lobbyCode = values.substring(values.indexOf("&lobbyCode=") + 11).toUpperCase();
+      isHost = lobbyCode.length == 0;
+      console.log(isHost + " : code : " + lobbyCode);
+    }
+    //var isHostString = values.substring(values.indexOf("isHost=") + 7);
         
     console.log("jeu :", jeu);
-    console.log("lobbyCode :", lobbyCode.toLowerCase());
-    var isHost = isHostString == 'true' ? true : false;
-    console.log("isHost :", isHost);
+    if(!isHost)
+      console.log("lobbyCode :", lobbyCode.toLowerCase());
+    //isHost = isHostString == 'true' ? true : false;
+    //console.log("isHost :", isHost);
 
     $("#titleLobbyGames").text(jeu);
-    $("#codeLobby").text(lobbyCode);
-    $("#codeLobbyMark").text(lobbyCode);
-
+    if(!isHost){
+      $("#codeLobby").text(lobbyCode);
+      $("#codeLobbyMark").text(lobbyCode);
+    }
+    var methodDisplayGame;
     switch(jeu) {
 	  case "President":
-	    $('#President').addClass("show");
+      $('#PresidentLobby').addClass("show");
+      methodDisplayGame = displayPresidentGamePlate;
 	    break;
 	  default:
     }
     if(isHost){
-        peer = new HostPeerManager(lobbyCode.toLowerCase(), precedentPage, activatePlayer, deactivatePlayer, selectPlayer);
+        peer = new HostPeerManager(precedentPage, activatePlayer, deactivatePlayer, selectPlayer, methodDisplayGame);
     }else{
-        peer = new ClientPeerManager(lobbyCode.toLowerCase(), precedentPage, activatePlayer, deactivatePlayer, selectPlayer);
+        peer = new ClientPeerManager(lobbyCode.toLowerCase(), precedentPage, activatePlayer, deactivatePlayer, selectPlayer, methodDisplayGame);
     }
     
     console.log("peer : ", peer);
@@ -41,6 +52,20 @@ function precedentPage(){
     window.location.href = 'joinGames.html?jeux='+jeu;
 }
 
+function displayPresidentGamePlate(otherPlayersId, actualPlayerId){
+  $('#PresidentLobby').remove();
+
+  var PresidentHtml = "<div id='PresidentPlate'>"+ '\n';
+  for(var i = 0; i < otherPlayersId.length; i++){
+    PresidentHtml += "  <div id='playerhand_" + otherPlayersId[i] + "' class='other-player-hand'></div>" + '\n';
+  }
+    //PresidentHtml += "  <section id='deck' class='deck'></section>";
+    PresidentHtml += "  <section id='tas' class='deck'></section>" + '\n';
+    PresidentHtml += "  <div id='playerhand_" + actualPlayerId +"' 'class='player-hand'></div>" + '\n';
+  PresidentHtml += "</div>" + '\n';
+
+  $('body').append(PresidentHtml);
+}
 
 function selectPlayer(player){
     var div = $("#squarecontainer>div:nth-child(" + player + ")");

@@ -1,14 +1,15 @@
 var DEFAULT_API_KEY = "lwjd5qra8257b9";
 
 class ClientPeerManager{
-    constructor(idHost, previousPageMethod, activatePlayerMethod, deactivatePlayerMethod, selectPlayerMethod){
+    constructor(idHost, previousPageMethod, activatePlayerMethod, deactivatePlayerMethod, selectPlayerMethod, displayGamePlateMethod){
         this.conn;
         this.actualPlayer;
+        this.DisplayGamePlate = displayGamePlateMethod;
         this.PreviousPage = previousPageMethod;
         this.ActivatePlayer = activatePlayerMethod;
         this.DeactivatePlayer = deactivatePlayerMethod;
         this.SelectPlayer = selectPlayerMethod;
-        this.peer = new Peer({key: DEFAULT_API_KEY}); //default key : lwjd5qra8257b9
+        this.peer = new Peer({id: idHost}, {key: DEFAULT_API_KEY}); //default key : lwjd5qra8257b9
         this.peer.on('open', (id) =>{
             console.log('My peer ID is: ' + id.substring(0, PRESIDENT_LOBBY_CODE_LENGTH));
             this.conn = this.peer.connect(idHost + '0000');
@@ -26,6 +27,7 @@ class ClientPeerManager{
             console.log("Error while creating peer :", err);
             //this.PreviousPage();
         })
+        $('#StartGameButton').hide();
     }
     
 
@@ -50,6 +52,14 @@ class ClientPeerManager{
                 break;
             case 'OTHER_CLIENT_DISCONNECTED':
                 this.DeactivatePlayer(message.idPlayer);
+                break;
+            case "GAME_STARTING":
+                this.DisplayGamePlate(message.otherIdPlayers, this.actualPlayer.GetId());
+                this.gameManager = new GameManager(message.otherIdPlayers, this.actualPlayer.GetId(), this);
+                break;
+            case "DISTRIBUTION_OVER":
+                this.gameManager.SetPlayersCard(message.players);
+                break;
             default:
                 console.log("don't know this message type : " + message.type);
                 break;

@@ -27,5 +27,12 @@ class Card{
     carteToString(){
         return 'La carte est le '+ this.value+' de ' + this.color;
     }
+
+    ToJson(){
+        return {
+            value: this.value,
+            color: this.color
+        };
+    }
 }
 

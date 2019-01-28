@@ -46,16 +46,16 @@ function makeid() {
 }
 
 function createLobby(gameName){
-	var code = makeid();
-	console.log(code);
+	//var code = makeid();
+	//console.log(code);
 	if(code.length == PRESIDENT_LOBBY_CODE_LENGTH)
-		window.location.href = 'lobbyGames.html?jeux='+gameName+'&lobbyCode='+code+'&isHost=true';
+		window.location.href = 'lobbyGames.html?jeux='+gameName;
 	//var peer = new PeerManager(true, code, gameName);
 }
 
 function joinLobby(gameName){
 	var code = $('#lobbyCodeInput').val();
 	if(code.length == PRESIDENT_LOBBY_CODE_LENGTH)
-	window.location.href = 'lobbyGames.html?jeux='+gameName+'&lobbyCode='+code+'&isHost=false';
+	window.location.href = 'lobbyGames.html?jeux='+gameName+'&lobbyCode='+code;
 	//var peer = new PeerManager(false, code, gameName);
 }
