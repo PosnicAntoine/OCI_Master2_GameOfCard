@@ -14,16 +14,18 @@ class HostPeerManager{
         this.SelectPlayer = selectPlayerMethod;
         this.ActivatePlayer(1);
         //console.log("#squarecontainer>div:nth-child(" + this.actualPlayer.GetId() + ")");
-        $("#squarecontainer>div:nth-child(" + this.actualPlayer.GetId() + ")").on("click", this.SelectPlayer(1));
+        //$("#squarecontainer>div:nth-child(" + this.actualPlayer.GetId() + ")").on("click", this.SelectPlayer(1));
         this.peer.on('open', (id) =>{
             console.log('My peer ID is: ' + id.substring(0, PRESIDENT_LOBBY_CODE_LENGTH));
             this.peer.on('connection', (newConnection) =>{
                 console.log("Received connection : ",newConnection);
                 this.handleNewConnection(newConnection);
             });
-            var text = id.ToUpperCase().substring(0, PRESIDENT_LOBBY_CODE_LENGTH);
+            //var arrayId = id.substring(0, PRESIDENT_LOBBY_CODE_LENGTH);
+            //console.log(arrayId.toUpperCase());
+            var text = id.substring(0, PRESIDENT_LOBBY_CODE_LENGTH).toUpperCase();
             $("#codeLobby").text(text);
-            $("#codeLobbyMark").text(text);
+            $("#codeLobbyMark").text(text.substring(0, PRESIDENT_LOBBY_CODE_LENGTH));
         });
         this.peer.on('error', (err)=>{
             console.log("Error while creating peer :", err);
@@ -131,7 +133,6 @@ class HostPeerManager{
                 console.log("don't know this message type : " + message.type);
                 break;
         }
-        console.log("After received message :", this);
     }
 
     sendMessageToAll(message){
@@ -151,7 +152,6 @@ class HostPeerManager{
                 if(this.AliveConnections[i].GetPlayerId() == ret)
                     boolFindOneWithThatId = true;
             }
-            console.log("Out of FOr ");
             if(boolFindOneWithThatId)
             {
                 ret += 1;
