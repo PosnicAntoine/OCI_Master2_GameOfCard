@@ -29,6 +29,11 @@ class Card{
         //console.log("cardToHtml : " + ret);
         return ret;
     }
+
+    OtherHand_CardToHtml(){
+        return '<section class="card" value=""></section>';
+    }
+
     carteToString(){
         return 'La carte est le '+ this.value+' de ' + this.color;
     }

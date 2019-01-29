@@ -67,6 +67,9 @@ class ClientPeerManager{
             case "DISTRIBUTION_OVER":
                 this.gameManager.SetPlayersCard(message.players);
                 break;
+            case "NEW_PLAYER_TURN":
+                this.gameManager.SetTurnTo(this.gameManager.GetPlayerFromJson(message.player));
+                break;
             default:
                 console.log("don't know this message type : " + message.type);
                 break;

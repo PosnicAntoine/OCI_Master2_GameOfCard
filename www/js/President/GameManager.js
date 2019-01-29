@@ -1,10 +1,10 @@
 class GameManager {
-    constructor(playersId,localPlayerId, peerManager) {
+    constructor(playersId, localPlayerId, peerManager) {
         var players = [];
         for(var i = 0; i < playersId.length; i++){
-            players[playersId[i]-1] = new Player(playersId[i]);
+            players[playersId[i]-1] = new Player(playersId[i], false);
         }
-        this.localPlayer = new Player(localPlayerId);
+        this.localPlayer = new Player(localPlayerId, true);
         players[localPlayerId-1] = this.localPlayer;
         this.peerManager = peerManager;
         this.players = players;
@@ -73,12 +73,27 @@ class GameManager {
         for(var i = 0; i < playersJson.length; i++){
             this.players[playersJson[i].id-1].SetCards(playersJson[i].cards);
         }
+        this.SetTurnToNobody();
+    }
+
+    SetTurnTo(player){
+        this.playing = player;
+        this.playing.TurnToThisPlayer();
+    }
+
+    SetTurnToNobody(){
+        this.localPlayer.EndTurn();
     }
 
     ResetAllPlayersHandCardsPosition(){
         for(var i = 0; i < this.players.length; i++){
             this.players[i].SortHand();
         }
+    }
+
+    GetPlayerFromJson(playerJson){
+        var index_player = playerJson.id;
+        return this.players[index_player -1];
     }
 
     PlayerGetCard(idPlayer, card){

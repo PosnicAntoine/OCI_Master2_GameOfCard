@@ -78,6 +78,7 @@ function displayPresidentGamePlate(otherPlayersId, actualPlayerId){
   PresidentHtml += "</div>" + '\n';
 
   $('body').append(PresidentHtml);
+  $('#tas').droppable();
 }
 
 function selectPlayer(player){

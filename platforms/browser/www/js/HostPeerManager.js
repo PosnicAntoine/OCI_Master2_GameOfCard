@@ -213,6 +213,15 @@ class HostPeerManager{
 
         this.sendMessageToAll(messageAfterDistribution);
     }
+
+    SendTurnToPlayer(player){
+        var playerJson = player.ToJson();
+        var messageNewPlayerTurn = {
+            type: "NEW_PLAYER_TURN",
+            player: playerJson
+        }
+        this.sendMessageToAll(messageNewPlayerTurn);
+    }
 }
 
 class ConnectionAndPlayer{

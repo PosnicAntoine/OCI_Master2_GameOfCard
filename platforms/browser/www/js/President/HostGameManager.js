@@ -31,5 +31,18 @@ class HostGameManager extends GameManager{
         }
         this.peerManager.SendCardsToAllPlayers(this.players);
         this.ResetAllPlayersHandCardsPosition();
+        this.StartGame();
     }
+
+    SetTurnTo(player){
+        super.SetTurnTo(player);
+        this.peerManager.SendTurnToPlayer(this.playing);
+    }
+
+    StartGame(){
+        super.SetTurnToNobody();
+        this.SetTurnTo(this.playing);
+    }
+
+
 }

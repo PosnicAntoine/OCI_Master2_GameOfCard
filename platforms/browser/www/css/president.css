@@ -22,11 +22,16 @@
 }
 
 #tas{
-    position: relative;
-    top: 45%;
+    position: absolute;
+    top: 55%;
+    left: 47%;
     height: 160px;
     max-width: 270px;
     width: 100px;
+}
+
+.card.selected {
+    top: -60px;
 }
 
 /***************** Cards ****************/

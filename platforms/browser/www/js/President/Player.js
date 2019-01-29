@@ -12,12 +12,39 @@ var MAX_CARD_IN_HAND = 26;
 
 class Player{
     
-    constructor(id){
+    constructor(id, isLocalPlayer){
         this.cards = [];
         this.rank = RankEnum.Neutre;
         this.state = false;
         this.id = id;
+        this.isLocalPlayer = isLocalPlayer;
         this.hand = $('#playerhand_' + this.id);
+        this.SelectedCard = [];
+
+        this.SelectCard = (evt) => {
+            if(this.state){
+                var cardHtml = evt.target;
+                console.log("clicked card :", cardHtml);
+                if($(cardHtml).hasClass("card__inner"))
+                    cardHtml = $(cardHtml).parent();
+                else if(!$(cardHtml).hasClass("card")){
+                    console.error("Not a card : ", cardHtml);
+                    return;
+                }
+                var card = this.cards[$(cardHtml).index()];
+                if(card != undefined){
+                    if($(cardHtml).hasClass("selected")){ // if already selected
+                        this.SelectedCard.splice($.inArray(card, this.SelectedCard),1);
+                        $(cardHtml).removeClass("selected");
+                        $(cardHtml).draggable("disable");
+                    }else{ // otherwise
+                        this.SelectedCard.push(card);
+                        $(cardHtml).addClass("selected");
+                        $(cardHtml).draggable("enable");
+                    }
+                }
+            }
+        }
     }
 
     SetCards(cards){
@@ -42,13 +69,53 @@ class Player{
         }
     }
 
+    TurnToThisPlayer(){
+        this.state = true;
+        
+        this.SelectedCard = [];
+        if(this.isLocalPlayer){
+            var cards = this.hand.children();
+            $("#tas").droppable({
+                accept: cards,
+                drop: this.OnCardDrop
+            });
+            for(var i = 0; i < cards.length; i++){
+                $(cards[i]).draggable("disable");
+            }
+        }
+    }
+
+    EndTurn(){
+        this.state = false;
+        
+        this.SelectedCard = [];
+        if(this.isLocalPlayer){
+            var cards = this.hand.children();
+            $("#tas").droppable("disable");
+            for(var i = 0; i < cards.length; i++){
+                $(cards[i]).draggable("disable");
+            }
+        }
+    }
+
+    OnCardDrop(event, ui){
+        console.log("Dropped :", ui);
+    }
+
     GetCards(){
         return this.cards;
     }
 
     AddCard(card){
         this.cards.push(card);
-        this.hand.append(card.carteToHtml());
+        var cardHtml = this.isLocalPlayer ? card.carteToHtml() : card.OtherHand_CardToHtml();
+        this.hand.append(cardHtml);
+        if(this.isLocalPlayer){
+            var lastChild = this.hand.children().last();
+            lastChild.draggable();
+            lastChild.on('click',this.SelectCard);
+        }
+        //this.hand.children().last().draggable();
     }
 
     GetId(){
@@ -74,7 +141,14 @@ class Player{
     UpdateHandWithActualCards(){
         this.hand.empty();
         for(var i = 0; i < this.cards.length; i++){
-            this.hand.append(this.cards[i].carteToHtml());
+            var cardHtml = this.isLocalPlayer ? this.cards[i].carteToHtml() : this.cards[i].OtherHand_CardToHtml();
+            this.hand.append($(cardHtml));
+            if(this.isLocalPlayer){
+                var lastChild = this.hand.children().last();
+                lastChild.draggable();
+                lastChild.on('click',this.SelectCard);
+            }
+            //console.log("applying draggable and disable");
         }
         this.UpdateCardPositionInHand();
     }
@@ -83,7 +157,7 @@ class Player{
         this.cards = this.cards.sort(function (a, b) {
             var A_value = a.GetValue();
             var B_value = b.GetValue();
-            console.log("values to compare => A_v : " + A_value + " | B_v : " + B_value);
+            //console.log("values to compare => A_v : " + A_value + " | B_v : " + B_value);
             if(A_value == 2){
                 return 1;
             }
