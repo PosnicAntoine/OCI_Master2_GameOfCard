@@ -32,19 +32,32 @@ function init(evt){
     }
     var methodDisplayGame;
     switch(jeu) {
-	  case "President":
-      $('#PresidentLobby').addClass("show");
+    case "President":
       methodDisplayGame = displayPresidentGamePlate;
-	    break;
-	  default:
+      break;
+    default:
     }
+
     if(isHost){
-        peer = new HostPeerManager(precedentPage, activatePlayer, deactivatePlayer, selectPlayer, methodDisplayGame);
+        peer = new HostPeerManager(jeu, activateLobby, precedentPage, activatePlayer, deactivatePlayer, selectPlayer, methodDisplayGame);
     }else{
-        peer = new ClientPeerManager(lobbyCode.toLowerCase(), precedentPage, activatePlayer, deactivatePlayer, selectPlayer, methodDisplayGame);
+        peer = new ClientPeerManager(lobbyCode.toLowerCase(), jeu, activateLobby, precedentPage, activatePlayer, deactivatePlayer, selectPlayer, methodDisplayGame);
     }
     
     console.log("peer : ", peer);
+}
+
+function activateLobby(jeu){
+
+    $('#loader').addClass("hide");
+    switch(jeu) {
+    case "President":
+      console.log("lobby: activating")
+      $('#PresidentLobby').addClass("show");
+      break;
+    default:
+    }
+    $('#codeLobby').addClass("show");
 }
 
 function precedentPage(){
@@ -69,7 +82,7 @@ function displayPresidentGamePlate(otherPlayersId, actualPlayerId){
 
 function selectPlayer(player){
     var div = $("#squarecontainer>div:nth-child(" + player + ")");
-    div.last().removeClass("hide");
+    $(div).children().last().removeClass("hide");
 }
 
 function activatePlayer(player){

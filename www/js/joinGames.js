@@ -48,8 +48,8 @@ function makeid() {
 function createLobby(gameName){
 	//var code = makeid();
 	//console.log(code);
-	if(code.length == PRESIDENT_LOBBY_CODE_LENGTH)
-		window.location.href = 'lobbyGames.html?jeux='+gameName;
+	//if(code.length == PRESIDENT_LOBBY_CODE_LENGTH)
+	window.location.href = 'lobbyGames.html?jeux='+gameName;
 	//var peer = new PeerManager(true, code, gameName);
 }
 

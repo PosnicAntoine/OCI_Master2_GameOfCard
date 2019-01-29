@@ -1,9 +1,10 @@
 var DEFAULT_API_KEY = "lwjd5qra8257b9";
 
 class ClientPeerManager{
-    constructor(idHost, previousPageMethod, activatePlayerMethod, deactivatePlayerMethod, selectPlayerMethod, displayGamePlateMethod){
+    constructor(idHost, jeu, activateLobbyMethod, previousPageMethod, activatePlayerMethod, deactivatePlayerMethod, selectPlayerMethod, displayGamePlateMethod){
         this.conn;
         this.actualPlayer;
+        this.activateLobby = activateLobbyMethod;
         this.DisplayGamePlate = displayGamePlateMethod;
         this.PreviousPage = previousPageMethod;
         this.ActivatePlayer = activatePlayerMethod;
@@ -20,12 +21,13 @@ class ClientPeerManager{
                 this.conn.on('data', (data)=>{
                     this.receiveNewMessageFromHost(data);
                 })
+                this.activateLobby(jeu);
             });
             
         });
         this.peer.on('error', (err)=>{
             console.log("Error while creating peer :", err);
-            //this.PreviousPage();
+            this.PreviousPage();
         })
         $('#StartGameButton').hide();
     }
@@ -37,6 +39,7 @@ class ClientPeerManager{
             case 'ASSIGNING_PLAYER_ON_CONNECT':
                 this.actualPlayer = new Player(message.idPlayer);
                 this.ActivatePlayer(message.idPlayer);
+                this.SelectPlayer(message.idPlayer);
                 //$("#squarecontainer>div:nth-child(" + this.actualPlayer.GetId() + ")").on("click", this.SelectPlayer(this.actualPlayer.GetId()));
                 
                 for(var i=0; i < message.otherIdPlayers.length;i++){

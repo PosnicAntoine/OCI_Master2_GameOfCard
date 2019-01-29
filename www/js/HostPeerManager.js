@@ -1,9 +1,10 @@
 var DEFAULT_API_KEY = "lwjd5qra8257b9";
 
 class HostPeerManager{
-    constructor(previousPageMethod, activatePlayerMethod, deactivatePlayerMethod, selectPlayerMethod, displayGamePlateMethod){
+    constructor(jeu, activateLobbyMethod, previousPageMethod, activatePlayerMethod, deactivatePlayerMethod, selectPlayerMethod, displayGamePlateMethod){
         this.conn;
         this.actualPlayer;
+        this.activateLobby = activateLobbyMethod;
         this.DisplayGamePlate = displayGamePlateMethod;
         this.peer = new Peer({key: DEFAULT_API_KEY});
         this.AliveConnections = [];
@@ -14,6 +15,7 @@ class HostPeerManager{
         this.DeactivatePlayer = deactivatePlayerMethod;
         this.SelectPlayer = selectPlayerMethod;
         this.ActivatePlayer(1);
+        this.SelectPlayer(1);
         //console.log("#squarecontainer>div:nth-child(" + this.actualPlayer.GetId() + ")");
         //$("#squarecontainer>div:nth-child(" + this.actualPlayer.GetId() + ")").on("click", this.SelectPlayer(1));
         this.peer.on('open', (id) =>{
@@ -26,10 +28,11 @@ class HostPeerManager{
             var text = id.substring(0, PRESIDENT_LOBBY_CODE_LENGTH).toUpperCase();
             $("#codeLobby").text(text);
             $("#codeLobbyMark").text(text.substring(0, PRESIDENT_LOBBY_CODE_LENGTH));
+            this.activateLobby(jeu);
         });
         this.peer.on('error', (err)=>{
             console.log("Error while creating peer :", err);
-            //this.PreviousPage();
+            this.PreviousPage();
         });
 
         this.StartGame = () =>{
