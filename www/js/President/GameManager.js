@@ -65,13 +65,19 @@ class GameManager {
         var rep = "";
         for(let i=0;i<this.localPlayer.hand.length;i++){
            rep += this.localPlayer.hand[i].carteToHtml();
-        }players.push
+        }
         return rep;
     }
 
     SetPlayersCard(playersJson){
         for(var i = 0; i < playersJson.length; i++){
             this.players[playersJson[i].id-1].SetCards(playersJson[i].cards);
+        }
+    }
+
+    ResetAllPlayersHandCardsPosition(){
+        for(var i = 0; i < this.players.length; i++){
+            this.players[i].SortHand();
         }
     }
 

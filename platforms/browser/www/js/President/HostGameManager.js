@@ -30,5 +30,6 @@ class HostGameManager extends GameManager{
             this.PlayerGetCard(taker, this.deck[i]);
         }
         this.peerManager.SendCardsToAllPlayers(this.players);
+        this.ResetAllPlayersHandCardsPosition();
     }
 }

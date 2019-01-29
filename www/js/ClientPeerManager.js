@@ -29,7 +29,11 @@ class ClientPeerManager{
             console.log("Error while creating peer :", err);
             this.PreviousPage();
         })
-        $('#StartGameButton').hide();
+
+        window.addEventListener("beforeunload", function(e){
+            this.Disconnect();
+         }, false);
+         $('#StartGameButton').hide();
     }
     
 

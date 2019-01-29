@@ -34,6 +34,9 @@ class HostPeerManager{
             console.log("Error while creating peer :", err);
             this.PreviousPage();
         });
+        window.addEventListener("beforeunload", function(e){
+            this.Disconnect();
+         }, false);
 
         this.StartGame = () =>{
             for(var i = 0; i < this.AliveConnections.length; i++){

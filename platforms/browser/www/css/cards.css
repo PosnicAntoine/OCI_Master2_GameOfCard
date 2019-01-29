@@ -132,7 +132,7 @@ body {
   .card__symbol--huge {
 	flex-basis: 108px;
   }
-
+/*
   .king{
 	font-size: 100px;
 	line-height: 250%;
@@ -153,6 +153,21 @@ body {
   }
   .jack:before{
 	content: '\265D';
+  }
+*/
+
+  .figure__symbol{
+    font-size: 100px;
+    line-height: 250%;
+  }
+  .king:before{
+    content: '\2654';
+  }
+  .queen:before{
+    content: '\265B';
+  }
+  .jack:before{
+    content: '\265D';
   }
 
 

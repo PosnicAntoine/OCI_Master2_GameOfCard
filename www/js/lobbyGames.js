@@ -68,13 +68,13 @@ function precedentPage(){
 function displayPresidentGamePlate(otherPlayersId, actualPlayerId){
   $('#PresidentLobby').remove();
 
-  var PresidentHtml = "<div id='PresidentPlate'>"+ '\n';
+  var PresidentHtml = "<div id='PresidentPlate' class='gameplate'>"+ '\n';
   for(var i = 0; i < otherPlayersId.length; i++){
     PresidentHtml += "  <div id='playerhand_" + otherPlayersId[i] + "' class='other-player-hand'></div>" + '\n';
   }
     //PresidentHtml += "  <section id='deck' class='deck'></section>";
     PresidentHtml += "  <section id='tas' class='deck'></section>" + '\n';
-    PresidentHtml += "  <div id='playerhand_" + actualPlayerId +"' 'class='player-hand'></div>" + '\n';
+    PresidentHtml += "  <div id='playerhand_" + actualPlayerId +"' class='player-hand'></div>" + '\n';
   PresidentHtml += "</div>" + '\n';
 
   $('body').append(PresidentHtml);

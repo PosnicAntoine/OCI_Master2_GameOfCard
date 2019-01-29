@@ -1,0 +1,129 @@
+.player-hand{
+    position: absolute;
+    bottom: 0px;
+    max-width: 600px;
+    max-height: 170px;
+}
+
+.gameplate{
+    margin-top: 76px;
+}
+
+#PresidentPlate{
+    min-height: 600px;
+    position: relative;
+}
+
+.other-player-hand{
+    position: absolute;
+    top: 115px;
+    max-width: 600px;
+    max-height: 170px;
+}
+
+#tas{
+    position: relative;
+    top: 45%;
+    height: 160px;
+    max-width: 270px;
+    width: 100px;
+}
+
+/***************** Cards ****************/
+
+#PresidentPlate .other-player-hand .card{
+    background-image: url("../img/dos-bleu.png");
+    background-size: 100% 100%;
+    background-color: transparent;
+}
+
+#PresidentPlate .card{
+   width: 100px;
+   height: 160px;
+   position: absolute;
+}
+
+#PresidentPlate .card-inner{
+    width: 100%;
+    height: 100%;
+
+}
+
+#PresidentPlate .card__symbol{
+    height: 24px;
+}
+
+
+#PresidentPlate .other-player-hand .card:before,
+#PresidentPlate .other-player-hand .card:after {
+  content: '';
+}
+
+#PresidentPlate .other-player-hand .card--heart:before,
+#PresidentPlate .other-player-hand .card--heart:after {
+    content: '';
+}
+
+#PresidentPlate .other-player-hand .card--diamond:before,
+#PresidentPlate .other-player-hand .card--diamond:after {
+    content: '';
+}
+#PresidentPlate .other-player-hand .card--spade:before,
+#PresidentPlate .other-player-hand .card--spade:after {
+    content: '';
+}
+#PresidentPlate .other-player-hand .card--club:before,
+#PresidentPlate .other-player-hand .card--club:after {
+    content: '';
+}
+
+#PresidentPlate .other-player-hand .card--heart .card__symbol:before {
+	content: '';
+}
+
+#PresidentPlate .other-player-hand .card--spade .card__symbol:before {
+	content: '';
+}
+#PresidentPlate .other-player-hand .card--diamond .card__symbol:before {
+    content: '';
+}
+
+#PresidentPlate .other-player-hand .card--club .card__symbol:before {
+    content: '';
+}
+
+#PresidentPlate .other-player-hand .king:before{
+    content: '';
+}
+#PresidentPlate .other-player-hand .queen:before{
+    content: '';
+}
+  
+#PresidentPlate .other-player-hand .jack:before{
+    content: '';
+}
+
+
+#PresidentPlate .card__symbol::before{
+    font-size: 24px;
+    line-height: 24px;
+}
+
+#PresidentPlate .figure__symbol{
+    font-size: 50px;
+    line-height: 250%;
+}
+
+@media (max-width:600px){
+    #PresidentPlate .card__symbol.ace:before{
+    font-size: 25px;
+    line-height: 400%;
+    }
+  }
+
+  @media (min-width:601px){
+    #PresidentPlate .card__symbol.ace:before{
+    font-size: 50px;
+    line-height: 250%;
+    }
+  }
