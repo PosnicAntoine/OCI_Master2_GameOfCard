@@ -36,6 +36,20 @@ class ClientPeerManager{
          $('#StartGameButton').hide();
     }
     
+    
+    PlayerHasPlayed(actualPlayer, playedCards, nextPlayer){
+        var playedMessage = {
+            type: "PLAYER_PLAYED",
+            actualPlayer: actualPlayer.ToJson(),
+            playedCards: this.CardArrayToJSON(playedCards),
+            nextPlayer: nextPlayer.ToJson()
+        }
+        this.SendMessageToHost(message);
+    }
+
+    SendMessageToHost(message){
+        this.conn.send(message);
+    }
 
     receiveNewMessageFromHost(message){
         console.log("Received messge : ", message);
@@ -70,11 +84,23 @@ class ClientPeerManager{
             case "NEW_PLAYER_TURN":
                 this.gameManager.SetTurnTo(this.gameManager.GetPlayerFromJson(message.player));
                 break;
+            case 'PLAYER_PLAYED':
+                this.gameManager.otherPlayerPlayedCards(message.actualPlayer, message.playedCards, message.nextPlayer);
+                break;
             default:
                 console.log("don't know this message type : " + message.type);
                 break;
         }
         //console.log("After received message :", this);
+    }
+
+
+    CardArrayToJSON(cardArray){
+        var ret = [];
+        for(var i = 0; i < cardArray.length; i++){
+            ret.push(cardArray[i].ToJson());
+        }
+        return ret;
     }
     
     Disconnect(){

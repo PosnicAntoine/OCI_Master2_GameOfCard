@@ -44,5 +44,7 @@ class HostGameManager extends GameManager{
         this.SetTurnTo(this.playing);
     }
 
-
+    otherPlayerPlayedCards(playerJson, playedCardsJson, nextPlayerJson){
+        super.otherPlayerPlayedCards(playerJson, playedCardsJson, nextPlayerJson);
+    }
 }

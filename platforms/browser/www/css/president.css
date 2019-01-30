@@ -30,6 +30,10 @@
     width: 100px;
 }
 
+.card{
+    top: 0px;
+}
+
 .card.selected {
     top: -60px;
 }
