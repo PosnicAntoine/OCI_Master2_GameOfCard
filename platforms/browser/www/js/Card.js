@@ -55,7 +55,7 @@ class Card{
         return ret;
     }
 
-    localCompare(card){
+    localCompare(card, useColor){
         var A_value = this.GetValue();
         var B_value = card.GetValue();
         //console.log("values to compare => A_v : " + A_value + " | B_v : " + B_value);
@@ -64,7 +64,14 @@ class Card{
         }
         if(B_value == 2){
             return -1;
-        }
+        }var A_color = this.GetColor();
+        var B_color = card.GetColor();
+        if(A_color.charCodeAt(0) > B_color.charCodeAt(0)){
+            return 1;
+        }else if(A_color.charCodeAt(0) == B_color.charCodeAt(0)){
+            return 0;
+        }else
+            return -1;
         if(A_value == 1){
             return 1;
         }
@@ -74,14 +81,18 @@ class Card{
         if(A_value > B_value)
             return 1;
         else if(A_value == B_value){
-            var A_color = this.GetColor();
-            var B_color = card.GetColor();
-            if(A_color.charCodeAt(0) > B_color.charCodeAt(0)){
+            if(useColor){
+                var A_color = this.GetColor();
+                var B_color = card.GetColor();
+                if(A_color.charCodeAt(0) > B_color.charCodeAt(0)){
+                    return 1;
+                }else if(A_color.charCodeAt(0) == B_color.charCodeAt(0)){
+                    return 0;
+                }else
+                    return -1;
+            }
+            else
                 return 1;
-            }else if(A_color.charCodeAt(0) == B_color.charCodeAt(0)){
-                return 0;
-            }else
-                return -1;
         }else
             return -1;
     }

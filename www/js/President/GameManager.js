@@ -14,7 +14,7 @@ class GameManager {
                     return false;
                 }
                 else{
-                   return playedCards[0].localCompare(this.tas[this.tas.length-1]) >= 0 //if played cards values are greater than last card on the tas
+                   return playedCards[0].localCompare(this.tas[this.tas.length-1], false) >= 0 //if played cards values are greater than last card on the tas
                 }
             }else{
                 return true;
