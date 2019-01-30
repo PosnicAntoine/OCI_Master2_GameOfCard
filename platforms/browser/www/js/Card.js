@@ -4,8 +4,33 @@ class Card{
         this.color = color;
     }
 
+    GetColor(){
+        return this.color;
+    }
+
     GetValue(){
         return this.value;
+    }
+
+    ValueToChar(value){
+        var ret = "null";
+        switch(value){
+            case 2 : ret = '2'; break;
+            case 3 : ret = '3'; break;
+            case 4 : ret = '4'; break;
+            case 5 : ret = '5'; break;
+            case 6 : ret = '6'; break;
+            case 7 : ret = '7'; break;
+            case 8 : ret = '8'; break;
+            case 9 : ret = '9'; break;
+            case 10 : ret = '10'; break;
+            case 11 : ret = 'J'; break;
+            case 12 : ret = 'Q'; break;
+            case 13 : ret = 'K'; break;
+            case 1 : ret = '1'; break;
+            default: ret = value; break;
+        }
+        return ret;
     }
 
     carteToHtml(){
@@ -28,6 +53,42 @@ class Card{
         }
         //console.log("cardToHtml : " + ret);
         return ret;
+    }
+
+    localCompare(card){
+        var A_value = this.GetValue();
+        var B_value = card.GetValue();
+        //console.log("values to compare => A_v : " + A_value + " | B_v : " + B_value);
+        if(A_value == 2){
+            return 1;
+        }
+        if(B_value == 2){
+            return -1;
+        }
+        if(A_value == 1){
+            return 1;
+        }
+        if(B_value == 1){
+            return -1;
+        }
+        if(A_value > B_value)
+            return 1;
+        else if(A_value == B_value){
+            var A_color = this.GetColor();
+            var B_color = card.GetColor();
+            if(A_color.charCodeAt(0) > B_color.charCodeAt(0)){
+                return 1;
+            }else if(A_color.charCodeAt(0) == B_color.charCodeAt(0)){
+                return 0;
+            }else
+                return -1;
+        }else
+            return -1;
+    }
+
+    SelectorForCard(){
+        var beginString = ".card.card--";
+        return beginString+this.color+"[value="+this.ValueToChar(this.value)+"]";
     }
 
     OtherHand_CardToHtml(){

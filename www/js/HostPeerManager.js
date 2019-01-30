@@ -119,6 +119,27 @@ class HostPeerManager{
         }
     }
 
+    PlayerHasPlayed(actualPlayer, playedCards, nextPlayer){
+        var playedMessage = {
+            type: "PLAYER_PLAYED",
+            actualPlayer: actualPlayer.ToJson(),
+            playedCards: this.CardArrayToJSON(playedCards),
+            nextPlayer: nextPlayer.ToJson()
+        }
+        this.sendMessageToAll(playedMessage);
+    }
+
+    OtherPlayerHasPlayed(actualPlayerJson, playedCardsJson, nextPlayerJson){
+        var playedMessage = {
+            type: "PLAYER_PLAYED",
+            actualPlayer: actualPlayerJson,
+            playedCards: playedCardsJson,
+            nextPlayer: nextPlayerJson
+        }
+        this.sendMessageToAllExcept(playedMessage, actualPlayer);
+        this.gameManager.otherPlayerPlayedCards(actualPlayerJson, playedCardsJson, nextPlayerJson);
+    }
+
     getConnectionAndPlayersFromPlayerId(idPlayer){
         if(idPlayer <= 0 || idPlayer > 8)
         {
@@ -171,9 +192,19 @@ class HostPeerManager{
             case 'CLIENT_DECONNECTION':
                 this.handleDeconnection(message.idPlayer);
                 break;
+            case 'PLAYER_PLAYED':
+                this.OtherPlayerHasPlayed(message.actualPlayer, message.playedCards, message.nextPlayer);
+                break;
             default:
                 console.log("don't know this message type : " + message.type);
                 break;
+        }
+    }
+    
+    sendMessageToAllExcept(message, player){
+        for(var i = 0; i < this.AliveConnections.length; i++){
+            if(this.AliveConnections[i].GetPlayerId() != player.GetId())
+                this.AliveConnections[i].SendToPlayer(message);
         }
     }
 
@@ -219,6 +250,14 @@ class HostPeerManager{
             playersToJson.push(players[i].ToJson());
         }
         return playersToJson;
+    }
+
+    CardArrayToJSON(cardArray){
+        var ret = [];
+        for(var i = 0; i < cardArray.length; i++){
+            ret.push(cardArray[i].ToJson());
+        }
+        return ret;
     }
 
     SendCardsToAllPlayers(players){
