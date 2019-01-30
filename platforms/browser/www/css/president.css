@@ -28,6 +28,7 @@
     height: 160px;
     max-width: 270px;
     width: 100px;
+    border: solid 1px red;
 }
 
 .card{

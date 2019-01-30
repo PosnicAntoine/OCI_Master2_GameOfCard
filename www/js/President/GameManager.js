@@ -7,8 +7,9 @@ class GameManager {
         }
     
         this.CanActualPlayThat = (playedCards)=>{
-            console.log("canPlay ? :" + this.currentCardNumber);
+            console.log("canPlay ? ");
             if(this.currentCardNumber != 0){ // if there are already played cards
+                console.log("last:", this.tas[this.tas.length-1]);
                 if (this.currentCardNumber != playedCards.length){
                     return false;
                 }
@@ -25,8 +26,8 @@ class GameManager {
                 if(this.tas.length == 0){ // if first cards of the tas
                     this.currentCardNumber = playedCards.length;
                 }
-                this.tas.push(playedCards);
                 for(var i = 0; i < playedCards.length; i++){
+                    this.tas.push(playedCards[i]);
                     $("#tas").append(playedCards[i].carteToHtml());
                     $("#tas " +playedCards[i].SelectorForCard()).css({top:0, left: i * GLOBAL_SPACING_SIZE});
                 }
@@ -58,9 +59,10 @@ class GameManager {
         }
         var playedCards = [];
         for(var j = 0; j < playedCardsJson.length; j++){
-            playedCards.push(new Card(playedCardsJson[j].value, playedCardsJson[j].color));
+            var card = new Card(playedCardsJson[j].value, playedCardsJson[j].color);
+            this.tas.push(card);
+            playedCards.push(card);
         }
-        this.tas.push(playedCards);
         for(var i = 0; i < playedCards.length; i++){
             $("#tas").append(playedCards[i].carteToHtml());
             $("#tas " +playedCards[i].SelectorForCard()).css({top:0, left: i * GLOBAL_SPACING_SIZE});

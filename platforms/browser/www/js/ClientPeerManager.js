@@ -44,7 +44,7 @@ class ClientPeerManager{
             playedCards: this.CardArrayToJSON(playedCards),
             nextPlayer: nextPlayer.ToJson()
         }
-        this.SendMessageToHost(message);
+        this.SendMessageToHost(playedMessage);
     }
 
     SendMessageToHost(message){

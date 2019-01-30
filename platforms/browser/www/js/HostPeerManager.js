@@ -136,7 +136,7 @@ class HostPeerManager{
             playedCards: playedCardsJson,
             nextPlayer: nextPlayerJson
         }
-        this.sendMessageToAllExcept(playedMessage, actualPlayer);
+        this.sendMessageToAllExcept(playedMessage, actualPlayerJson);
         this.gameManager.otherPlayerPlayedCards(actualPlayerJson, playedCardsJson, nextPlayerJson);
     }
 
@@ -201,9 +201,9 @@ class HostPeerManager{
         }
     }
     
-    sendMessageToAllExcept(message, player){
+    sendMessageToAllExcept(message, playerJson){
         for(var i = 0; i < this.AliveConnections.length; i++){
-            if(this.AliveConnections[i].GetPlayerId() != player.GetId())
+            if(this.AliveConnections[i].GetPlayerId() != playerJson.id)
                 this.AliveConnections[i].SendToPlayer(message);
         }
     }
