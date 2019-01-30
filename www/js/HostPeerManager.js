@@ -53,6 +53,7 @@ class HostPeerManager{
         }
 
         $('#StartGameButton').on("click",this.StartGame);
+        $('#StartGreyGameButton').removeClass("hide");
     }
     
     handleNewConnection(newConnection){
@@ -79,6 +80,14 @@ class HostPeerManager{
             }
             this.sendMessageToAll(messageToOthers);
             this.AliveConnections.push(newConnectionAndPlayer);
+            
+            //Launch button handling
+            console.log(this.AliveConnections.length);
+            if(this.AliveConnections.length > 0){
+              $('#StartGreyGameButton').addClass("hide");
+              $('#StartGameButton').addClass("show");
+            }
+            
             this.ActivatePlayer(newId);
         });
         this.peer.connections[newId].on('error', (err)=>{
@@ -97,6 +106,15 @@ class HostPeerManager{
                 idPlayer: idPlayer
             }
             this.AliveConnections.splice($.inArray(connectionAndPlayer, this.AliveConnections),1);
+            
+            
+            //Launch button handling
+            console.log(this.AliveConnections.length);
+            if(this.AliveConnections.length <= 0){
+              $('#StartGreyGameButton').removeClass("hide");
+              $('#StartGameButton').removeClass("show");
+            }
+
             this.sendMessageToAll(DisconnectionMessage);
         }
     }

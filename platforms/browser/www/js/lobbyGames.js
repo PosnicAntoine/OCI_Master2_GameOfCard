@@ -4,6 +4,7 @@ var PRESIDENT_LOBBY_CODE_LENGTH = 12;
 
 var jeu;
 var peer;
+var counterPlayer;
 
 function init(evt){
     var isHost;
