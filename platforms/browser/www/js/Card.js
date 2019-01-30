@@ -86,6 +86,33 @@ class Card{
             return -1;
     }
 
+    localCompareToValue(value){
+        var A_value = this.GetValue();
+        var B_value = value;
+        //console.log("values to compare => A_v : " + A_value + " | B_v : " + B_value);
+        if(B_value == 0){
+            return 1;
+        }
+        if(A_value == 2){
+            return 1;
+        }
+        if(B_value == 2){
+            return -1;
+        }
+        if(A_value == 1){
+            return 1;
+        }
+        if(B_value == 1){
+            return -1;
+        }
+        if(A_value > B_value)
+            return 1;
+        else if(A_value == B_value)
+            return 0;
+        else
+            return -1;
+    }
+
     SelectorForCard(){
         var beginString = ".card.card--";
         return beginString+this.color+"[value="+this.ValueToChar(this.value)+"]";

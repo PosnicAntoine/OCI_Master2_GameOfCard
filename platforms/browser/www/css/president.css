@@ -17,8 +17,11 @@
 .other-player-hand{
     position: absolute;
     top: 115px;
-    max-width: 600px;
-    max-height: 170px;
+    width: 100px;
+    height: 160px;
+    background-image: url("../img/dos-bleu.png");
+    background-size: 100% 100%;
+    background-color: transparent;
 }
 
 #tas{
@@ -37,6 +40,18 @@
 
 .card.selected {
     top: -60px;
+}
+
+.card.selectable {
+    border: dotted green 1px;
+}
+
+.displayNbCard{
+    content: attr(value);
+    text-align: center;
+    margin-top: 50%;
+    font-size: 36px;
+    font-weight: bold;
 }
 
 /***************** Cards ****************/
@@ -137,3 +152,13 @@
     line-height: 250%;
     }
   }
+
+  /************************* Media Queries **********************/
+
+@media screen and (orientation:portrait) {
+
+}
+
+@media screen and (orientation:landscape) {
+
+}

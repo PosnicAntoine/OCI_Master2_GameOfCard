@@ -1,6 +1,8 @@
 class LocalPlayer extends Player{
     constructor(id, canPlayMethod, justPlayedMethod, passTurnMethod){
         super(id);
+        this.hand.empty();
+        this.hand.css({top: window.innerHeight - 100, left:0})
         this.CanPlay = canPlayMethod;
         this.JustPlayed = justPlayedMethod;
         this.PassTurn = passTurnMethod;
@@ -76,7 +78,7 @@ class LocalPlayer extends Player{
                     }
                 }
                 var card = this.cards[$(cardHtml).index()];
-                if(card != undefined){
+                if(card != undefined && $(cardHtml).hasClass("selectable")){
                     if($(cardHtml).hasClass("selected")){ // if already selected
                         this.SelectedCard.splice($.inArray(card, this.SelectedCard),1);
                         $(cardHtml).removeClass("selected");
@@ -140,10 +142,9 @@ class LocalPlayer extends Player{
         }
     }
 
-    TurnToThisPlayer(){
-        super.TurnToThisPlayer();
-
-        
+    TurnToThisPlayer(lastValuePlaced){
+        super.TurnToThisPlayer(lastValuePlaced);
+                
         this.SelectedCard = [];
         var cards = this.hand.children();
         $("#tas").droppable({
@@ -153,6 +154,32 @@ class LocalPlayer extends Player{
         });
         for(var i = 0; i < cards.length; i++){
             $(cards[i]).draggable("disable");
+            var card = this.cards[$(cards[i]).index()];
+            if(card.localCompareToValue(lastValuePlaced)>=0){
+                $(cards[i]).addClass("selectable");
+            }
+        }
+    }
+
+    SetCardsFromJSON(cards){
+        this.cards = [];
+        for(var i = 0; i < cards.length; i++){
+            this.AddCard(new Card(cards[i].value, cards[i].color));
+        }
+        this.SortHand();
+    }
+
+    UpdateCardPositionInHand(){
+        var cards = this.hand.children();
+        var nbCard = cards.length;
+        var actualIndex = 0;
+        var card_width = cards.first().width();
+        this.ActualSpaceBetweenCard = GLOBAL_SPACING_SIZE + ((MAX_CARD_IN_HAND - nbCard) / MAX_CARD_IN_HAND) * card_width; 
+        //console.log("Updating card positions => nbCard : " + nbCard + " | space : " + space_between_card);
+        for(var i = 0; i < cards.length; i++){
+            $(cards[i]).css('left', actualIndex * this.ActualSpaceBetweenCard);
+            actualIndex++;
+            //console.log("card : ", $(cards[i]));
         }
     }
 
@@ -182,6 +209,32 @@ class LocalPlayer extends Player{
         $("#tas").droppable("disable");
         for(var i = 0; i < cards.length; i++){
             $(cards[i]).draggable("disable");
+            $(cards[i]).removeClass("selectable");
         }
+    }
+
+    RemoveThoseCardFromDeck(cardsToRemove){
+        for(var i = 0; i < cardsToRemove.length; i++)
+            this.RemoveCardFromJson(cardsToRemove[i]);
+        
+        this.UpdateCardPositionInHand();
+    }
+
+    RemoveCardFromJson(cardToRemoveJson){
+        var cardToRemove = new Card(cardToRemoveJson.value, cardToRemoveJson.color);
+        for(var i = 0; i < this.cards.length; i++){
+            if(this.cards[i].localCompare(cardToRemove) == 0){ // if same card
+                var cardHtml = $("#playerhand_" + this.id + " " + cardToRemove.SelectorForCard());
+                $(cardHtml).remove();
+                this.cards.splice($.inArray(this.cards[i], this.cards), 1);
+            }
+        }
+    }
+
+    SortHand(){
+        this.cards = this.cards.sort(function (a, b) {
+            return a.localCompare(b); // method Card.localCompare(card);
+        });
+        this.UpdateHandWithActualCards();
     }
 }

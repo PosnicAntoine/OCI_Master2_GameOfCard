@@ -9,6 +9,9 @@ var RankEnum = {
 var GLOBAL_SPACING_SIZE = 24;
 var MAX_CARD_IN_HAND = 26;
 
+var positions = [{top: 50, left: 100}, {top: 50, left: 250},{top: 50, left: 400}, {top: 50, left: 550}, {top: 50, left: 700}, {top: 50, left: 850}, {top: 50, left: 100}, {top: 50, left: 250}]
+var colors = ["blue", "red", "green", "yellow", "purple", "orange", "pink", "brown"];
+
 
 class Player{
     
@@ -19,33 +22,21 @@ class Player{
         this.id = id;
         this.hand = $('#playerhand_' + this.id);
         this.ActualSpaceBetweenCard = GLOBAL_SPACING_SIZE;
-
+        this.hand.append("<section class='displayNbCard text-" + colors[id-1] + "' value='0'></section>");
+        this.nbCardTxt = $("#playerhand_" + this.id + " .displayNbCard");
+        this.hand.css(positions[id-1]);
     }
 
     
-    SetCards(cards){
+    SetCardsFromJSON(cards){
         this.cards = [];
         for(var i = 0; i < cards.length; i++){
             this.AddCard(new Card(cards[i].value, cards[i].color));
         }
-        this.SortHand();
+        this.nbCardTxt.text(cards.length);
     }
 
-    UpdateCardPositionInHand(){
-        var cards = this.hand.children();
-        var nbCard = cards.length;
-        var actualIndex = 0;
-        var card_width = cards.first().width();
-        this.ActualSpaceBetweenCard = GLOBAL_SPACING_SIZE + ((MAX_CARD_IN_HAND - nbCard) / MAX_CARD_IN_HAND) * card_width; 
-        //console.log("Updating card positions => nbCard : " + nbCard + " | space : " + space_between_card);
-        for(var i = 0; i < cards.length; i++){
-            $(cards[i]).css('left', actualIndex * this.ActualSpaceBetweenCard);
-            actualIndex++;
-            //console.log("card : ", $(cards[i]));
-        }
-    }
-
-    TurnToThisPlayer(){
+    TurnToThisPlayer(lastValuePlaced){
         this.state = true;
     }
 
@@ -59,26 +50,24 @@ class Player{
 
     AddCard(card){
         this.cards.push(card);
-        this.hand.append(card.OtherHand_CardToHtml());
     }
 
     RemoveThoseCardFromDeck(cardsToRemove){
         for(var i = 0; i < cardsToRemove.length; i++)
             this.RemoveCardFromJson(cardsToRemove[i]);
         
-        this.UpdateCardPositionInHand();
+        this.nbCardTxt.text(this.cards.length);
     }
 
     RemoveCardFromJson(cardToRemoveJson){
         var cardToRemove = new Card(cardToRemoveJson.value, cardToRemoveJson.color);
         for(var i = 0; i < this.cards.length; i++){
             if(this.cards[i].localCompare(cardToRemove) == 0){ // if same card
-                var cardHtml = $("#playerhand_" + this.id + " " + cardToRemove.SelectorForCard());
-                $(cardHtml).remove();
                 this.cards.splice($.inArray(this.cards[i], this.cards), 1);
             }
         }
     }
+
     GetId(){
         return this.id;
     }
@@ -100,11 +89,7 @@ class Player{
     }
 
     UpdateHandWithActualCards(){
-        this.hand.empty();
-        for(var i = 0; i < this.cards.length; i++){
-            this.hand.append(this.cards[i].OtherHand_CardToHtml());
-        }
-        this.UpdateCardPositionInHand();
+        this.nbCardTxt.text(this.cards.length);
     }
 
     SortHand(){

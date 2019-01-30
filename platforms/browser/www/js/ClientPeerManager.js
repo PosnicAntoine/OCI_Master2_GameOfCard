@@ -30,9 +30,7 @@ class ClientPeerManager{
             this.PreviousPage();
         })
 
-        window.addEventListener("beforeunload", function(e){
-            this.Disconnect();
-         }, false);
+        window.addEventListener("beforeunload", this.Disconnect, false);
          $('#StartGameButton').hide();
     }
     
@@ -52,15 +50,15 @@ class ClientPeerManager{
     }
 
     receiveNewMessageFromHost(message){
-        console.log("Received messge : ", message);
+        console.log("Received message : ", message);
         switch(message.type){
             case 'ASSIGNING_PLAYER_ON_CONNECT':
-                this.actualPlayer = new Player(message.idPlayer);
+                this.actualPlayer = message.idPlayer;
                 this.ActivatePlayer(message.idPlayer);
                 this.SelectPlayer(message.idPlayer);
                 //$("#squarecontainer>div:nth-child(" + this.actualPlayer.GetId() + ")").on("click", this.SelectPlayer(this.actualPlayer.GetId()));
                 
-                for(var i=0; i < message.otherIdPlayers.length;i++){
+                for(var i = 0; i < message.otherIdPlayers.length;i++){
                     this.ActivatePlayer(message.otherIdPlayers[i]);
                 }
                 break;
@@ -75,8 +73,8 @@ class ClientPeerManager{
                 this.DeactivatePlayer(message.idPlayer);
                 break;
             case "GAME_STARTING":
-                this.DisplayGamePlate(message.otherIdPlayers, this.actualPlayer.GetId());
-                this.gameManager = new GameManager(message.otherIdPlayers, this.actualPlayer.GetId(), this);
+                this.DisplayGamePlate(message.otherIdPlayers, this.actualPlayer);
+                this.gameManager = new GameManager(message.otherIdPlayers, this.actualPlayer, this);
                 break;
             case "DISTRIBUTION_OVER":
                 this.gameManager.SetPlayersCard(message.players);
@@ -107,7 +105,7 @@ class ClientPeerManager{
         if(this.actualPlayer != undefined){
             var DeconnectionMessage = {
                 type: "CLIENT_DECONNECTION",
-                idPlayer: this.actualPlayer.GetId()
+                idPlayer: this.actualPlayer
             }
             this.conn.send(DeconnectionMessage);
         }

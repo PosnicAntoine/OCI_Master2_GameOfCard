@@ -26,6 +26,7 @@ class GameManager {
                 if(this.tas.length == 0){ // if first cards of the tas
                     this.currentCardNumber = playedCards.length;
                 }
+                this.LastValueSet = playedCards[0].GetValue();
                 for(var i = 0; i < playedCards.length; i++){
                     this.tas.push(playedCards[i]);
                     $("#tas").append(playedCards[i].carteToHtml());
@@ -49,6 +50,7 @@ class GameManager {
         this.tas = [];
         this.playing = this.players[0];
         this.currentCardNumber = 0;
+        this.LastValueSet = 0;
         this.finishplayers = 4;
     }
 
@@ -57,6 +59,7 @@ class GameManager {
         if(this.tas.length == 0){ // if first cards of the tas
             this.currentCardNumber = playedCardsJson.length;
         }
+        this.LastValueSet = playedCardsJson[0].value;
         var playedCards = [];
         for(var j = 0; j < playedCardsJson.length; j++){
             var card = new Card(playedCardsJson[j].value, playedCardsJson[j].color);
@@ -84,7 +87,7 @@ class GameManager {
 
     SetPlayersCard(playersJson){
         for(var i = 0; i < playersJson.length; i++){
-            this.players[playersJson[i].id-1].SetCards(playersJson[i].cards);
+            this.players[playersJson[i].id-1].SetCardsFromJSON(playersJson[i].cards);
         }
         this.SetTurnToNobody();
     }
@@ -99,7 +102,7 @@ class GameManager {
             this.playing.EndTurn();
         }
         this.playing = player;
-        this.playing.TurnToThisPlayer();
+        this.playing.TurnToThisPlayer(this.LastValueSet);
     }
 
     SetTurnToNobody(){

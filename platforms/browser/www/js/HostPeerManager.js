@@ -3,13 +3,12 @@ var DEFAULT_API_KEY = "lwjd5qra8257b9";
 class HostPeerManager{
     constructor(jeu, activateLobbyMethod, previousPageMethod, activatePlayerMethod, deactivatePlayerMethod, selectPlayerMethod, displayGamePlateMethod){
         this.conn;
-        this.actualPlayer;
         this.activateLobby = activateLobbyMethod;
         this.DisplayGamePlate = displayGamePlateMethod;
         this.peer = new Peer({key: DEFAULT_API_KEY});
         this.AliveConnections = [];
         this.nbConnection = 1;
-        this.actualPlayer = new Player(1);
+        this.actualPlayer = 1;
         this.PreviousPage = previousPageMethod;
         this.ActivatePlayer = activatePlayerMethod;
         this.DeactivatePlayer = deactivatePlayerMethod;
@@ -34,9 +33,7 @@ class HostPeerManager{
             console.log("Error while creating peer :", err);
             this.PreviousPage();
         });
-        window.addEventListener("beforeunload", function(e){
-            this.Disconnect();
-         }, false);
+        window.addEventListener("beforeunload", this.Disconnect, false);
 
         this.StartGame = () =>{
             for(var i = 0; i < this.AliveConnections.length; i++){
@@ -47,7 +44,7 @@ class HostPeerManager{
                 }
                 this.AliveConnections[i].SendToPlayer(StartGameMessage);
             }
-            var ownId = this.actualPlayer.GetId();
+            var ownId = this.actualPlayer;
             this.DisplayGamePlate(this.returnPlayersListWithoutId(ownId), ownId);
             this.gameManager = new HostGameManager(this.returnPlayersListWithoutId(ownId), ownId, this);
         }
@@ -161,18 +158,18 @@ class HostPeerManager{
     }
 
     returnPlayersList(){
-        var ret = [this.actualPlayer.id];
+        var ret = [this.actualPlayer];
         for(var i = 0; i < this.AliveConnections.length; i++){
-            ret.push(this.AliveConnections[i].player.id);
+            ret.push(this.AliveConnections[i].GetPlayerId());
         }
         return ret;
     }
 
     returnPlayersListWithoutId(id){
-        if(this.actualPlayer.id == id)
+        if(this.actualPlayer == id)
             var ret = [];
         else
-            var ret = [this.actualPlayer.id];
+            var ret = [this.actualPlayer];
 
         for(var i = 0; i < this.AliveConnections.length; i++){
             var idPlayer = this.AliveConnections[i].GetPlayerId();

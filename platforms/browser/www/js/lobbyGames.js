@@ -88,6 +88,7 @@ function selectPlayer(player){
 }
 
 function activatePlayer(player){
+    console.log("playerActivate :", player);
     var div = $("#squarecontainer>div:nth-child(" + player + ")");
     var text_color;
     switch(player) {

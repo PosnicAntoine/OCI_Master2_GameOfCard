@@ -1,35 +1,24 @@
-html,body {
+body {
   padding: 0;
   height : 100%;
 	margin: 0;
 	background: #f0f0f0;
   }
   .cards {
-  background-color: #f00;
-<<<<<<< HEAD
-  width: 100%;
-  height: 100%;
-	text-align: center;
-=======
+  /*background-color: #f00;*/
   width: 40%;
   min-width: 300px;
   height: 400px;
   text-align: center;
   padding-top: 1%;
->>>>>>> db2a8c352f89612e8f306950a4341d2e355cf5e8
 	/*max-width: 640px;*/
 	margin: 0 auto;
   }
   .card {
 	position: relative;
 	display: inline-block;
-<<<<<<< HEAD
-	width: 20%;
-	height: 60%;
-=======
 	width: 90%;
   height: 90%;
->>>>>>> db2a8c352f89612e8f306950a4341d2e355cf5e8
 	font: 16px 'Trebuchet MS';
 	margin: 10px;
 	border-radius: 4px;
@@ -143,7 +132,7 @@ html,body {
   .card__symbol--huge {
 	flex-basis: 108px;
   }
-
+/*
   .king{
 	font-size: 100px;
 	line-height: 250%;
@@ -164,6 +153,21 @@ html,body {
   }
   .jack:before{
 	content: '\265D';
+  }
+*/
+
+  .figure__symbol{
+    font-size: 100px;
+    line-height: 250%;
+  }
+  .king:before{
+    content: '\2654';
+  }
+  .queen:before{
+    content: '\265B';
+  }
+  .jack:before{
+    content: '\265D';
   }
 
 
