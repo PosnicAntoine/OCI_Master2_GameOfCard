@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/cards.css">
+        <link rel="stylesheet" type="text/css" href="../css/president.css">
+        <link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <style>
+            html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+        </style>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.9/peer.min.js"></script>-->
+        <script src="../js/peer_js_min.js" ></script>
+        <script src="../js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+        <script src="../js/jquery-ui-touch-punch-master/jquery.ui.touch-punch.min.js"></script>
+        <script src="../js/President/Player.js" ></script>
+        <script src="../js/President/LocalPlayer.js" ></script>
+        <script src="../js/Card.js" ></script>
+        <script src="../js/President/GameManager.js"></script>
+        <script src="../js/President/HostGameManager.js"></script>
+        <script src="../js/HostPeerManager.js" ></script>
+        <script src="../js/ClientPeerManager.js" ></script>
+        <script src="../js/lobbyGames.js" ></script>
+        <title>GameOfCard</title>
+    </head>
+    <body class="darker-gray">
+        <a id="precedentPage" onclick="precedentPage()" class="left margin-left">
+            <i class="xxlarge fa fa-arrow-circle-left" aria-hidden="true"></i>
+        </a>
+
+        <i id="loader" class="container display-middle">
+            <i class="spin fa fa-spinner xxllarge"></i>
+        </i>
+
+        <div id="codeLobby" class="hide corner-ribbon top-right sticky cyan optgroup"></div>
+
+        <!--President-->
+        <div id="PresidentLobby" class="hide container margin">
+            <div class="center">
+                <img src="../img/logoPresident.png" class="circle" alt="Person" style="width:35%">
+            </div>
+            
+
+            <p class="margin-top xxxxlarge text-light-grey center">President</p>
+            <p class="margin xmedium text-light-grey center">Give the code <mark id="codeLobbyMark" class="cyan text-dark-grey padding-small large"></mark> to your friend!</p>
+
+
+            <div id="squarecontainer" class="container margin-toper center">
+                <div id="playerOne" class="col s3 center text-dark-grey display-container">
+                    <i class="fa fa-square-o xxxxlarge"></i>
+                    <i class="fa fa-caret-down text-paler-yellow xxxxxlarge display-topermiddle hide"></i>
+                </div>
+
+                <div id="playerTwo" class="col s3 center text-dark-grey display-container">
+                    <i class="fa fa-square-o xxxxlarge"></i>
+                    <i class="fa fa-caret-down text-paler-yellow xxxxxlarge display-topermiddle hide"></i>
+                </div>
+
+                <div id="playerThree" class="col s3 center text-dark-grey display-container">
+                    <i class="fa fa-square-o xxxxlarge"></i>
+                    <i class="fa fa-caret-down text-paler-yellow xxxxxlarge display-topermiddle hide"></i>
+                </div>
+
+                <div id="playerFour" class="col s3 center text-dark-grey display-container">
+                    <i class="fa fa-square-o xxxxlarge"></i>
+                    <i class="fa fa-caret-down text-paler-yellow xxxxxlarge display-topermiddle hide"></i>
+                </div>
+
+                <br>
+
+                <div id="playerFive" class="col s3 center text-dark-grey display-container">
+                    <i class="fa fa-square-o xxxxlarge"></i>
+                    <i class="fa fa-caret-down text-paler-yellow xxxxxlarge display-topermiddle hide"></i>
+                </div>
+
+                <div id="playerSix" class="col s3 center text-dark-grey display-container">
+                    <i class="fa fa-square-o xxxxlarge"></i>
+                    <i class="fa fa-caret-down text-paler-yellow xxxxxlarge display-topermiddle hide"></i>
+                </div>
+
+                <div id="playerSeven" class="col s3 center text-dark-grey display-container">
+                    <i class="fa fa-square-o xxxxlarge"></i>
+                    <i class="fa fa-caret-down text-paler-yellow xxxxxlarge display-topermiddle hide"></i>
+                </div>
+
+                <div id="playerEight" class="col s3 center text-dark-grey display-container">
+                    <i class="fa fa-square-o xxxxlarge"></i>
+                    <i class="fa fa-caret-down text-paler-yellow xxxxxlarge display-topermiddle hide"></i>
+                </div>
+            </div>
+
+            <div class="container center margin-toperer">
+                <p id="StartGreyGameButton" class="hide dark-gray text-light-grey block padding-24">
+                    <b class="large">Need Friends to Start</b>
+                </p>
+                <p id="StartGameButton" class="hide button teal block hover-cyan hover-text-white padding-24">
+                    <b class="large">Start New Game</b>
+                </p>
+            </div>
+
+        </div>
+
+    </body>
+</html>

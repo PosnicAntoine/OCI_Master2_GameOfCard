@@ -62,7 +62,7 @@ class Player{
     RemoveCardFromJson(cardToRemoveJson){
         var cardToRemove = new Card(cardToRemoveJson.value, cardToRemoveJson.color);
         for(var i = 0; i < this.cards.length; i++){
-            if(this.cards[i].localCompare(cardToRemove) == 0){ // if same card
+            if(this.cards[i].localCompare(cardToRemove, true) == 0){ // if same card
                 this.cards.splice($.inArray(this.cards[i], this.cards), 1);
             }
         }
@@ -94,7 +94,7 @@ class Player{
 
     SortHand(){
         this.cards = this.cards.sort(function (a, b) {
-            return a.localCompare(b); // method Card.localCompare(card);
+            return a.localCompare(b, true); // method Card.localCompare(card);
         });
         this.UpdateHandWithActualCards();
     }

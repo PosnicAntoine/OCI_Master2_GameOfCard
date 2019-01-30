@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+        </style>
+        <title>GameOfCard</title>
+    </head>
+    <body class="darker-gray">
+        <div class="center margin-toper padding-16">
+            <img src="img/logo.png" class=" margin circle" alt="Person" style="width:35%">
+            <h1>Game Of Cards</h1>
+        </div>
+        <div class="margin-toper padding-bottomer">
+          <div class="container center">
+              <a href="pages/joinGames.html?jeux=Picolo" class="button teal block hover-cyan hover-text-white padding-24">
+                <b class="large">Picolo</b>
+              </a>
+              <a href="pages/joinGames.html?jeux=President" class="margin-top button teal block hover-cyan hover-text-white padding-24">
+                <b class="large">President</b>
+              </a>
+          </div>
+        </div>
+    </body>
+</html>
