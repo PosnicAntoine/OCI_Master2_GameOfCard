@@ -3,7 +3,7 @@
   "display": "standalone",
   "name": "GameOfCard",
   "short_name": "GameOfCard",
-  "version": "io.cordova.hellocordova",
+  "version": "io.cordova.GameOfCard",
   "description": "GameOfCard is a multiplayer cross platform card game.",
   "author": "Apache Cordova Team",
   "icons": [],

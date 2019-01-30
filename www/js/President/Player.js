@@ -94,7 +94,9 @@ class Player{
 
     SortHand(){
         this.cards = this.cards.sort(function (a, b) {
-            return a.localCompare(b, true); // method Card.localCompare(card);
+            var ret = a.localCompare(b, true);
+            console.log(a.GetValue() + " | " + b.GetValue() + " => " + ret);
+            return ret; // method Card.localCompare(card);
         });
         this.UpdateHandWithActualCards();
     }

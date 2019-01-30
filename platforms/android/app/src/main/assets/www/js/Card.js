@@ -64,14 +64,7 @@ class Card{
         }
         if(B_value == 2){
             return -1;
-        }var A_color = this.GetColor();
-        var B_color = card.GetColor();
-        if(A_color.charCodeAt(0) > B_color.charCodeAt(0)){
-            return 1;
-        }else if(A_color.charCodeAt(0) == B_color.charCodeAt(0)){
-            return 0;
-        }else
-            return -1;
+        }        
         if(A_value == 1){
             return 1;
         }

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jan 30 21:09:52 CET 2019
+#Wed Jan 30 21:21:42 CET 2019
 5.base=/home/dagaubs/Cours/TPs/OCI/OCI_Master2_GameOfCard/platforms/android/app/build/intermediates/assets/release
 42.base=/home/dagaubs/Cours/TPs/OCI/OCI_Master2_GameOfCard/platforms/android/app/build/intermediates/assets/release
 22.path=www/img/logo.png
